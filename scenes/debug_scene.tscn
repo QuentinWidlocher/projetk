@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=4 uid="uid://21woj7tc1vty"]
+[gd_scene load_steps=3 format=3 uid="uid://21woj7tc1vty"]
 
 [ext_resource type="PackedScene" uid="uid://bexxaeethfndr" path="res://scenes/player.tscn" id="1_3e1qr"]
 [ext_resource type="TileSet" uid="uid://65oayjapelfs" path="res://resources/proto_tile_set.tres" id="2_n1i7m"]
@@ -13,18 +13,14 @@ position_smoothing_enabled = true
 
 [node name="SecondFloor" type="TileMapLayer" parent="."]
 position = Vector2(0, -78)
-tile_map_data = PackedByteArray("AAD9//7/BwADAAAAAAD8//7/BwADAAAAAAD8//3/BwADAAAAAAD9//3/BwADAAAAAAD9//z/BwADAAAAAAD8//z/BwADAAAAAAA=")
 tile_set = ExtResource("2_n1i7m")
 
 [node name="SecondFloorWalls" type="TileMapLayer" parent="."]
 position = Vector2(0, -78)
-tile_map_data = PackedByteArray("AAD8//7/BwACAAAAAAD8//3/BwACAAAAAAD8//z/CQAAAAAAAAD9//z/CAAAAAAAAAD+//z/CAAAAAAAAAA=")
 tile_set = ExtResource("2_n1i7m")
 
 [node name="Floor" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD8/wIABwADAAAAAAD9/wIABwADAAAAAAD+/wIABwADAAAAAAD+/wMABwADAAAAAAD9/wMABwADAAAAAAD8/wMABwADAAAAAAD8/wQABwADAAAAAAD9/wQABwADAAAAAAD+/wQABwADAAAAAAD7/wEABwADAAAAAAD7/wIABwADAAAAAAD7/wMABwADAAAAAAD7/wQABwADAAAAAAD9/wEABwADAAAAAAD8/wEABwADAAAAAAD+/wEABwADAAAAAAD7////BwADAAAAAAD7/wAABwADAAAAAAD8////BwADAAAAAAD8/wAABwADAAAAAAD9////BwADAAAAAAD9/wAABwADAAAAAAD+////BwADAAAAAAD+/wAABwADAAAAAAACAP3/BwADAAAAAAACAP7/BwADAAAAAAACAP//BwADAAAAAAACAAAABwADAAAAAAADAP3/BwADAAAAAAADAP7/BwADAAAAAAADAP//BwADAAAAAAADAAAABwADAAAAAAAEAP3/BwADAAAAAAAEAP7/BwADAAAAAAAEAP//BwADAAAAAAAEAAAABwADAAAAAAAFAP3/BwADAAAAAAAFAP7/BwADAAAAAAAFAP//BwADAAAAAAAFAAAABwADAAAAAAA=")
 tile_set = ExtResource("2_n1i7m")
 
 [node name="Wall" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD7/wQABwACAAAAAAD7/wMABwACAAAAAAD7/wIABwACAAAAAAD7/wEABwACAAAAAAD7/wAABwACAAAAAAD7////CQAAAAAAAAD8////BwAEAAAAAAD9////BwAEAAAAAAD6/wQABwAAAAAAAAD6/wUABwAAAAAAAAD6/wMABwAAAAAAAAD7/wUABwABAAAAAAD8/wUABwABAAAAAAD9/wUABwABAAAAAAD9/wIABwABAAAAAAD+////CAAAAAAAAAD+//7/BwAAAAAAAAD+//3/BwAAAAAAAAD+//z/BwAAAAAAAAACAAAABwACAAAAAAACAP//BwACAAAAAAACAP7/BwACAAAAAAACAP3/CQAAAAAAAAADAP3/CAAAAAAAAAAEAP3/CAAAAAAAAAAFAP3/CAAAAAAAAAA=")
 tile_set = ExtResource("2_n1i7m")

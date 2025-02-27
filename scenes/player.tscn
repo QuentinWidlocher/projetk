@@ -1,8 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bexxaeethfndr"]
+[gd_scene load_steps=4 format=3 uid="uid://bexxaeethfndr"]
 
-[ext_resource type="Texture2D" uid="uid://bom3njxlk2jw" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0096.png" id="1_g2els"]
 [ext_resource type="Script" uid="uid://dhbf6g4jagno6" path="res://scripts/player.gd" id="1_qhqgy"]
-[ext_resource type="Texture2D" uid="uid://b04qyypkpgefv" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0104.png" id="2_qhqgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 7.0
@@ -24,11 +22,3 @@ motion_mode = 1
 
 [node name="PhysicShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CircleShape2D_qhqgy")
-
-[node name="KnightSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_g2els")
-
-[node name="SwordSprite" type="Sprite2D" parent="."]
-position = Vector2(7, -1)
-texture = ExtResource("2_qhqgy")
-flip_h = true
