@@ -41,16 +41,39 @@ func _process(delta):
 		direction = velocity.normalized()
 		animation_name = "run"
 
-	if rot < 0 and rot > -90:
-		animation_name += "_N"
-	elif rot < -90 and rot > -180:
+	# 8 directions
+
+	if rot < -157.5 and rot > -180:
+		animation_name += "_SW"
+	elif rot < -112.5 and rot > -157.5:
 		animation_name += "_W"
-	elif rot > 0 and rot < 90:
+	elif rot < -67.5 and rot > -112.5:
+		animation_name += "_NW"
+	elif rot < -22.5 and rot > -67.5:
+		animation_name += "_N"
+	elif rot > -22.5 and rot < 22.5:
+		animation_name += "_NE"
+	elif rot > 22.5 and rot < 67.5:
 		animation_name += "_E"
-	elif rot > 90 and rot < 180:
+	elif rot > 67.5 and rot < 112.5:
+		animation_name += "_SE"
+	elif rot > 112.5 and rot < 157.5:
 		animation_name += "_S"
+	elif rot > 157.5 and rot < 180:
+		animation_name += "_SW"
 	else:
 		animation_name += "_N"
+
+	# if rot < 0 and rot > -90:
+	# 	animation_name += "_N"
+	# elif rot < -90 and rot > -180:
+	# 	animation_name += "_W"
+	# elif rot > 0 and rot < 90:
+	# 	animation_name += "_E"
+	# elif rot > 90 and rot < 180:
+	# 	animation_name += "_S"
+	# else:
+	# 	animation_name += "_N"
 
 	animation_player.play(animation_name)
 

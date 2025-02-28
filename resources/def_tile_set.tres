@@ -1,0 +1,46 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://yx883hgkjhcb"]
+
+[ext_resource type="Texture2D" uid="uid://yicdinqeoow6" path="res://assets/blocks_atlas.png" id="1_5qrt0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xn0ek"]
+texture = ExtResource("1_5qrt0")
+texture_region_size = Vector2i(512, 1024)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 384)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-256, 0, 0, -128, 256, 0, 0, 128)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 384)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-256, 0, -192, -32, -128, 0, -192, 32)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 384)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 384)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -128, 64, -96, 0, -64, -64, -96)
+4:0/0 = 0
+4:0/0/texture_origin = Vector2i(0, 384)
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, 0, 192, -32, 256, 0, 192, 32)
+5:0/0 = 0
+5:0/0/texture_origin = Vector2i(0, 384)
+6:0/0 = 0
+6:0/0/texture_origin = Vector2i(0, 384)
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-256, 0, 0, -128, 64, -96, -192, 32)
+7:0/0 = 0
+7:0/0/texture_origin = Vector2i(0, 384)
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-256, 0, -192, -32, 64, 96, 0, 128)
+0:1/0 = 0
+0:1/0/texture_origin = Vector2i(0, 384)
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -96, 0, -128, 256, 0, 192, 32)
+1:1/0 = 0
+1:1/0/texture_origin = Vector2i(0, 384)
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, 96, 0, 128, 256, 0, 192, -32)
+
+[resource]
+tile_shape = 1
+tile_layout = 5
+tile_offset_axis = 1
+tile_size = Vector2i(512, 256)
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "FishingRodTarget"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_xn0ek")
+tile_proxies/coords_level = [[0, Vector2i(0, 0)], [7, Vector2i(0, 0)], [2, Vector2i(0, 0)], [7, Vector2i(1, 0)], [4, Vector2i(0, 0)], [7, Vector2i(2, 0)], [4, Vector2i(0, 1)], [7, Vector2i(2, 1)], [4, Vector2i(0, 2)], [7, Vector2i(2, 2)], [4, Vector2i(0, 3)], [7, Vector2i(2, 3)], [5, Vector2i(0, 0)], [7, Vector2i(3, 0)], [5, Vector2i(0, 2)], [7, Vector2i(3, 2)], [5, Vector2i(0, 3)], [7, Vector2i(3, 3)], [6, Vector2i(0, 0)], [7, Vector2i(4, 0)], [6, Vector2i(0, 2)], [7, Vector2i(4, 2)], [6, Vector2i(0, 3)], [7, Vector2i(4, 3)]]

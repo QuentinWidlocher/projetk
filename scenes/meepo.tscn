@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://dupsmqs8yu54"]
+
+[ext_resource type="PackedScene" uid="uid://bexxaeethfndr" path="res://scenes/player.tscn" id="1_370us"]
+[ext_resource type="Texture2D" uid="uid://b6h1p5qs2hb7u" path="res://assets/meepo/Meepo_E_idle_1.png" id="2_pdogm"]
+[ext_resource type="Texture2D" uid="uid://x6cou31of5qa" path="res://assets/meepo/Meepo_N_idle_1.png" id="3_bhtyu"]
+[ext_resource type="Texture2D" uid="uid://ck05cv3jkwpw8" path="res://assets/meepo/Meepo_NE_idle_1.png" id="4_jyfpx"]
+[ext_resource type="Texture2D" uid="uid://c1pilxfrtx83b" path="res://assets/meepo/Meepo_NW_idle_1.png" id="5_mehnl"]
+[ext_resource type="Texture2D" uid="uid://qoxeq6x4evqr" path="res://assets/meepo/Meepo_SE_idle_1.png" id="6_vvk01"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8e7k3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pdogm")
+}],
+"loop": true,
+"name": &"idle_E",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bhtyu")
+}],
+"loop": true,
+"name": &"idle_N",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jyfpx")
+}],
+"loop": true,
+"name": &"idle_NE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_mehnl")
+}],
+"loop": true,
+"name": &"idle_NW",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vvk01")
+}],
+"loop": true,
+"name": &"idle_SE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pdogm")
+}],
+"loop": true,
+"name": &"run_E",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bhtyu")
+}],
+"loop": true,
+"name": &"run_N",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jyfpx")
+}],
+"loop": true,
+"name": &"run_NE",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_mehnl")
+}],
+"loop": true,
+"name": &"run_NW",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vvk01")
+}],
+"loop": true,
+"name": &"run_SE",
+"speed": 15.0
+}]
+
+[node name="Player" instance=ExtResource("1_370us")]
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = SubResource("SpriteFrames_8e7k3")
