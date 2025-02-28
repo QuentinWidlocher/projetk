@@ -13,6 +13,8 @@ extends CharacterBody2D
 
 var current_state: BaseState = IdleState.new(self)
 
+var direction: Vector2 = Vector2.ZERO
+
 var debug_lines: Array = []
 
 func _ready():
@@ -33,6 +35,7 @@ func _process(delta):
 
 	var animation_name = "idle"
 	if velocity.length() > acceleration * 10:
+		direction = velocity.normalized()
 		animation_name = "run"
 
 	if rot < 0 and rot > -90:

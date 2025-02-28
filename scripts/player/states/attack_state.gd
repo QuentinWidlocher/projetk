@@ -10,7 +10,7 @@ func _init(player_: Player) -> void:
 
 func on_enter(previous_state_: BaseState):
 	self.previous_state = previous_state_
-	var aim_angle = player.get_move_axis().normalized().angle()
+	var aim_angle = player.direction.angle()
 	player.swoosh_sprite.rotation = rotation_to_face_right + aim_angle
 	player.swoosh_animation_player.animation_finished.connect(self._on_animation_finished)
 	player.swoosh_animation_player.play("swoosh")
