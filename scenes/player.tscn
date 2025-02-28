@@ -463,6 +463,7 @@ light_mode = 1
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_qhqgy")
 
 [node name="HitArea2D" type="Area2D" parent="."]

@@ -20,7 +20,7 @@ func physics_process(delta: float):
 	var move_axis = player.get_move_axis()
 
 	if move_axis.length() > 0:
-		player.velocity = player.velocity.lerp(move_axis * player.max_speed, delta * player.decceleration)
+		player.velocity = player.velocity.lerp(move_axis * player.max_speed, delta * player.acceleration)
 	else:
 		# Decelerate
 		player.velocity = player.velocity.lerp(Vector2.ZERO, delta * player.decceleration)
