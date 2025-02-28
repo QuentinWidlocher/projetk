@@ -8,7 +8,9 @@ y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_3e1qr")]
 position = Vector2(793, 281)
-speed = 500.0
+max_speed = 800.0
+acceleration = 10.0
+decceleration = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -100)
