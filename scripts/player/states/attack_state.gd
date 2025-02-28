@@ -16,9 +16,10 @@ func on_enter(previous_state_: BaseState):
 	player.swoosh_animation_player.play("swoosh")
 
 func on_exit():
+	player.swoosh_animation_player.animation_finished.disconnect(self._on_animation_finished)
 	pass
 
-func process(delta: float):
+func process(_delta: float):
 	# previous_state.process(delta)
 	if done:
 		return IdleState.new(player)

@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var swoosh: Node2D = $Swoosh
 @onready var swoosh_sprite: Sprite2D = $Swoosh/Sprite
 @onready var swoosh_animation_player: AnimationPlayer = $Swoosh/AnimationPlayer
+@onready var target: Node2D = $Target
 
 var current_state: BaseState = IdleState.new(self)
 

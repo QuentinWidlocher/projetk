@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bexxaeethfndr"]
+[gd_scene load_steps=44 format=3 uid="uid://bexxaeethfndr"]
 
 [ext_resource type="Script" uid="uid://dhbf6g4jagno6" path="res://scripts/player.gd" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cfctq2muomri5" path="res://assets/kenney_isometric-miniature-prototype/Isometric/floor_N.png" id="2_l71n6"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://ds4p86p8gqvhv" path="res://assets/kenney_isometric-miniature-prototype/Characters/Human/Human_0_Run8.png" id="21_j2b1d"]
 [ext_resource type="Texture2D" uid="uid://bp7s4fonhnnf4" path="res://assets/kenney_isometric-miniature-prototype/Characters/Human/Human_0_Run9.png" id="22_cs1tg"]
 [ext_resource type="Texture2D" uid="uid://g70064dk7wg8" path="res://assets/atlas_50c.png" id="23_4ni07"]
+[ext_resource type="Texture2D" uid="uid://bw8wc8vbcjyj7" path="res://assets/target_round_b.svg" id="25_ke2ow"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 7.0
@@ -462,6 +463,9 @@ _data = {
 blend_mode = 1
 light_mode = 1
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ujl30"]
+radius = 52.0
+
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 wall_min_slide_angle = 0.0
@@ -523,3 +527,14 @@ rotation = -2.21657
 texture = ExtResource("23_4ni07")
 hframes = 5
 vframes = 2
+
+[node name="Target" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Target"]
+z_index = 1
+texture = ExtResource("25_ke2ow")
+
+[node name="Area2D" type="Area2D" parent="Target"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Target/Area2D"]
+shape = SubResource("CircleShape2D_ujl30")

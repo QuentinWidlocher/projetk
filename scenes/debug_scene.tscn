@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=4 uid="uid://85y3cq7ub5vv"]
+[gd_scene load_steps=3 format=4 uid="uid://21woj7tc1vty"]
 
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_3e1qr"]
+[ext_resource type="PackedScene" uid="uid://bexxaeethfndr" path="res://scenes/player.tscn" id="1_3e1qr"]
 [ext_resource type="TileSet" uid="uid://65oayjapelfs" path="res://resources/proto_tile_set.tres" id="2_n1i7m"]
 
 [node name="DebugScene" type="Node2D"]
@@ -14,7 +14,13 @@ decceleration = 5.0
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -100)
 zoom = Vector2(0.53, 0.53)
+limit_left = -4780
+limit_top = -1380
+limit_right = 3930
+limit_bottom = 3110
+limit_smoothed = true
 position_smoothing_enabled = true
+editor_draw_limits = true
 
 [node name="Floor" type="TileMapLayer" parent="."]
 y_sort_enabled = true
