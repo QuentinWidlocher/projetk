@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var swoosh_sprite: Sprite2D = $Swoosh/Sprite
 @onready var swoosh_animation_player: AnimationPlayer = $Swoosh/AnimationPlayer
 @onready var target: Node2D = $Target
+@onready var hooked_target: Node2D
 
 var current_state: BaseState = IdleState.new(self)
 
@@ -24,6 +25,7 @@ func _ready():
 
 func _process(delta):
 	debug("State: %s" % current_state.get_script().get_global_name().replace("State", ""))
+	debug("Hooked: %s" % hooked_target.name if hooked_target else "None")
 	var next_state = current_state.process(delta)
 	if next_state != null and next_state != current_state:
 		var old_state = current_state
@@ -51,6 +53,9 @@ func _process(delta):
 		animation_name += "_N"
 
 	animation_player.play(animation_name)
+
+	if hooked_target != null:
+		DebugDraw2D.line(position, hooked_target.position, Color.RED, 3.0)
 
 	debug_label.text = "\n".join(debug_lines)
 	debug_lines.clear()

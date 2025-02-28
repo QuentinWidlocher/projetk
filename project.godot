@@ -15,9 +15,17 @@ run/main_scene="uid://21woj7tc1vty"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DebugDraw2D="*res://addons/debugdraw2d/DebugDraw2D.gd"
+
 [display]
 
 window/size/mode=2
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/debugdraw2d/plugin.cfg")
 
 [input]
 

@@ -15,7 +15,10 @@ func process(_delta: float):
 
 	if Input.is_action_pressed("object_category_1"):
 		if Input.is_action_pressed("fishing_rod"):
-			return FishingRodState.new(player)
+			if player.hooked_target != null:
+				return ReelFishingRodState.new(player)
+			else:
+				return ThrowFishingRodState.new(player)
 
 	if Input.is_action_just_pressed("attack"):
 		return AttackState.new(player)
