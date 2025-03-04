@@ -19,10 +19,6 @@ config/icon="res://icon.svg"
 
 DebugDraw2D="*res://addons/debugdraw2d/DebugDraw2D.gd"
 
-[display]
-
-window/size/mode=2
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/debugdraw2d/plugin.cfg")
@@ -79,6 +75,13 @@ object_category_1={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":4,"axis_value":1.0,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Walls"
+2d_physics/layer_2="Hooks"
+2d_physics/layer_3="Stairs"
+2d_physics/layer_4="Floors"
 
 [rendering]
 

@@ -46,7 +46,7 @@ func physics_process(delta: float):
 	# Decelerate
 	player.velocity = player.velocity.lerp(Vector2.ZERO, delta * player.decceleration)
 
-func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int):
+func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int):
 	if body is TileMapLayer:
 		touched = true
 
