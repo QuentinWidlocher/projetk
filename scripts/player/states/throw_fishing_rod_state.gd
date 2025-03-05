@@ -15,6 +15,7 @@ func on_enter(_previous_state: BaseState):
 	area.body_shape_entered.connect(self._on_body_shape_entered)
 
 	player.target.visible = true
+	player.target_line.visible = true
 	direction = player.direction
 	current_time = 0.0
 
@@ -33,6 +34,7 @@ func process(delta: float):
 		return IdleState.new(player)
 
 	if current_time >= max_time:
+		player.target_line.visible = false
 		return IdleState.new(player)
 
 	player.target.position += direction * speed * delta
@@ -46,7 +48,7 @@ func physics_process(delta: float):
 	# Decelerate
 	player.velocity = player.velocity.lerp(Vector2.ZERO, delta * player.decceleration)
 
-func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int):
+func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int):
 	if body is TileMapLayer:
 		touched = true
 

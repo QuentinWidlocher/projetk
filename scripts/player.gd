@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var swoosh_sprite: Sprite2D = $Swoosh/Sprite
 @onready var swoosh_animation_player: AnimationPlayer = $Swoosh/AnimationPlayer
 @onready var target: Node2D = $Target
+@onready var target_line: Line2D = $Line2D
 @onready var hooked_target: Node2D
 
 var current_state: BaseState = IdleState.new(self)
@@ -33,13 +34,20 @@ func _process(delta):
 		current_state = next_state
 		next_state.on_enter(old_state)
 
-	debug("Rotation: %0.2f" % rad_to_deg(velocity.angle()))
-	var rot = rad_to_deg(velocity.angle())
+
+	# var rot = rad_to_deg(velocity.angle())
+	var move_axis: Vector2 = get_move_axis()
+
+	debug("Rotation: %0.2f" % rad_to_deg(move_axis.angle()))
+
+	if velocity.length() > 0 and move_axis.length() > 0:
+		direction = move_axis.normalized()
 
 	var animation_name = "idle"
 	if velocity.length() > acceleration * 10:
-		direction = velocity.normalized()
 		animation_name = "run"
+
+	var rot: float = rad_to_deg(direction.angle())
 
 	# 8 directions
 
@@ -64,21 +72,12 @@ func _process(delta):
 	else:
 		animation_name += "_N"
 
-	# if rot < 0 and rot > -90:
-	# 	animation_name += "_N"
-	# elif rot < -90 and rot > -180:
-	# 	animation_name += "_W"
-	# elif rot > 0 and rot < 90:
-	# 	animation_name += "_E"
-	# elif rot > 90 and rot < 180:
-	# 	animation_name += "_S"
-	# else:
-	# 	animation_name += "_N"
-
 	animation_player.play(animation_name)
 
 	if hooked_target != null:
-		DebugDraw2D.line(position, hooked_target.position, Color.RED, 3.0)
+		target_line.set_point_position(1, hooked_target.position - position)
+	else:
+		target_line.set_point_position(1, target.position)
 
 	debug_label.text = "\n".join(debug_lines)
 	debug_lines.clear()
