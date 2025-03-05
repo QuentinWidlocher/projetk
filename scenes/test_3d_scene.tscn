@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtpy1wmeiwome"]
+
+[ext_resource type="MeshLibrary" uid="uid://bnbf8ollpj60m" path="res://resources/proto_mesh_library.tres" id="1_q0ah8"]
+[ext_resource type="Script" uid="uid://bot6c06tps1tm" path="res://scripts/grid_map_instancer.gd" id="2_ahwgs"]
+[ext_resource type="PackedScene" uid="uid://bkdd7c0jws16a" path="res://scenes/player_3d.tscn" id="3_vyv7f"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player3D" parent="." instance=ExtResource("3_vyv7f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48167, 2.29518, 4.46759)
+
+[node name="Camera3D" type="Camera3D" parent="Player3D"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 9, 14.271)
+projection = 1
+current = true
+size = 4.0
+near = 0.001
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="GridMap2" type="GridMap" parent="Node3D"]
+mesh_library = ExtResource("1_q0ah8")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65540, 2, 3, 65541, 2, 3, 65542, 2, 3, 65540, 4, 2, 65541, 4, 2, 65542, 4, 2)
+}
+script = ExtResource("2_ahwgs")
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="GridMap" type="GridMap" parent="Node3D"]
+mesh_library = ExtResource("1_q0ah8")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(1, 1, 0, 0, 1, 0, 65535, 1, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 131071, 0, 2, 65536, 0, 2, 65537, 0, 2, 1, 3, 0, 0, 3, 0, 0, 4, 0, 1, 4, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 65538, 0, 2, 65535, 5, 0, 0, 5, 0, 1, 5, 0, 2, 5, 0, 3, 1, 0, 3, 3, 0, 3, 5, 0, 3, 4, 0, 65539, 0, 2, 131071, 6, 3, 65536, 6, 3, 65537, 6, 3, 65538, 6, 3, 65539, 6, 3, 65538, 3, 1, 131071, 1, 1, 65536, 1, 1, 65537, 1, 1, 65538, 1, 1, 65539, 1, 1, 65539, 2, 1, 65539, 3, 1, 65539, 4, 1, 65539, 5, 1, 65538, 5, 1, 65538, 4, 1, 65538, 2, 1, 65537, 2, 1, 65536, 2, 1, 131071, 2, 1, 131071, 3, 1, 131071, 4, 1, 65536, 3, 1, 65537, 3, 1, 65537, 4, 1, 65536, 4, 1, 65536, 5, 1, 65537, 5, 1, 131071, 5, 1, 65535, 4, 0, 65535, 3, 0, 65535, 6, 3, 0, 6, 3, 1, 6, 3, 2, 6, 3, 3, 6, 3, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 131070, 5, 4, 131070, 4, 4, 131070, 3, 4, 131070, 2, 4, 131070, 1, 4, 65540, 5, 5, 65540, 1, 5, 4, 5, 5, 4, 4, 0, 4, 3, 0, 4, 1, 5, 4, 2, 0, 3, 2, 0, 65540, 3, 1, 65541, 3, 1, 65542, 3, 1, 5, 3, 0, 6, 3, 0, 5, 4, 0, 6, 4, 0, 5, 2, 0, 6, 2, 0, 65540, 2, 1, 65541, 2, 1, 65542, 2, 1, 65540, 4, 1, 65541, 4, 1, 65542, 4, 1)
+}
+script = ExtResource("2_ahwgs")
+metadata/_editor_floor_ = Vector3(0, 1, 0)

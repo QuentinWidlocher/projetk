@@ -5,12 +5,12 @@ var rotation_to_face_right = deg_to_rad(-127)
 var done = false
 var previous_state: BaseState
 
-func _init(player_: Player) -> void:
+func _init(player_: Player3DVersion) -> void:
 	self.player = player_
 
 func on_enter(previous_state_: BaseState):
 	self.previous_state = previous_state_
-	var aim_angle = player.direction.angle()
+	var aim_angle = player.direction.angle_to(Vector3.RIGHT)
 	player.swoosh_sprite.rotation = rotation_to_face_right + aim_angle
 	player.swoosh_animation_player.animation_finished.connect(self._on_animation_finished)
 	player.swoosh_animation_player.play("swoosh")

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bwntb01clj35d"]
+
+[node name="Base" type="StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.728, 0)
+cast_shadow = 0
+custom_aabb = AABB(-0.5, -1.23, -0.5, 1, 1, 1)
+gi_mode = 0
+pixel_size = 0.0028
+billboard = 1
+double_sided = false
+alpha_cut = 2
+texture_filter = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+debug_color = Color(0, 0.85, 1, 1)

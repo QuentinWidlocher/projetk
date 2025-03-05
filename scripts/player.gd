@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var max_speed: float = 800
+@export var max_speed: float = 8
 @export var acceleration: float = 10
 @export var decceleration: float = 10
 
@@ -48,119 +48,139 @@ var OFFSETS: Dictionary = {
 	"E": DIRECTIONS["W"] * 145,
 }
 
-var current_state: BaseState = IdleState.new(self)
+# var current_state: BaseState = IdleState.new(self)
 
-var direction: Vector2 = Vector2.ZERO
-var z_position: float = 0.0
+# var direction: Vector2 = Vector2.ZERO
+# var z_position: float = 0.0
+# var current_floor: TileMapLayer = null
 
-var debug_lines: Array = []
+# var debug_lines: Array = []
 
-func _ready():
-	current_state.on_enter(null)
-	pass
+# func _ready():
+# 	current_state.on_enter(null)
+# 	pass
 
-func _process(delta):
-	if raycast.is_colliding():
-		print(raycast.get_collider().name)
-	position.y += z_position * 310
-	z_index = lerp(z_position, z_position * 10, delta)
-	debug("Z: %0.1f" % z_position)
-	for body in floor_area.get_overlapping_bodies():
-		if body is TileMapLayer:
-			var tilemap: TileMapLayer = body as TileMapLayer
-			var coords := tilemap.local_to_map(position)
-			var tile_data := tilemap.get_cell_tile_data(coords)
-			if tile_data != null:
-				if tile_data.has_custom_data("Height"):
-					var height: float = tile_data.get_custom_data("Height")
-					z_position = height
-				if tile_data.has_custom_data("Stairs"):
-					var stairs_direction: String = tile_data.get_custom_data("Stairs")
-
-					if not STAIRS_DIRECTIONS.has(stairs_direction):
-						continue
-
-					var dir: Vector2 = STAIRS_DIRECTIONS[stairs_direction] * 380
-
-					var stairs_pos: Vector2 = tilemap.map_to_local(coords) + OFFSETS[stairs_direction]
-					DebugDraw2D.arrow(stairs_pos, stairs_pos + dir, Color.RED, 3)
-					var x_delta := stairs_pos.x - position.x
-
-					var z_delta = lerp(0, 1, x_delta)
-					debug(x_delta)
-
-	position.y -= z_position * 310
-	debug("State: %s" % current_state.get_script().get_global_name().replace("State", ""))
-	debug("Hooked: %s" % hooked_target.name if hooked_target else "None")
-	var next_state = current_state.process(delta)
-	if next_state != null and next_state != current_state:
-		var old_state = current_state
-		old_state.on_exit()
-		current_state = next_state
-		next_state.on_enter(old_state)
-
-	debug("Rotation: %0.2f" % rad_to_deg(velocity.angle()))
-	var rot = rad_to_deg(velocity.angle())
-
-	var animation_name = "idle"
-	if velocity.length() > acceleration * 10:
-		direction = velocity.normalized()
-		animation_name = "run"
-
-	# 8 directions
-
-	if rot < -157.5 and rot > -180:
-		animation_name += "_SW"
-	elif rot < -112.5 and rot > -157.5:
-		animation_name += "_W"
-	elif rot < -67.5 and rot > -112.5:
-		animation_name += "_NW"
-	elif rot < -22.5 and rot > -67.5:
-		animation_name += "_N"
-	elif rot > -22.5 and rot < 22.5:
-		animation_name += "_NE"
-	elif rot > 22.5 and rot < 67.5:
-		animation_name += "_E"
-	elif rot > 67.5 and rot < 112.5:
-		animation_name += "_SE"
-	elif rot > 112.5 and rot < 157.5:
-		animation_name += "_S"
-	elif rot > 157.5 and rot < 180:
-		animation_name += "_SW"
-	else:
-		animation_name += "_N"
-
-	animation_player.play(animation_name)
-
-	if hooked_target != null:
-		DebugDraw2D.line(position, hooked_target.position, Color.RED, 3.0)
-
-	debug_label.text = "\n".join(debug_lines)
-	debug_lines.clear()
-
-func _physics_process(delta):
-	current_state.physics_process(delta)
-	move_and_slide()
+# func _process(delta):
+# 	var current_floor_name = current_floor.name if current_floor != null else "None"
+# 	debug("Current Floor: %s" % current_floor_name)
 
 
-func get_move_axis():
-	var x_axis = Input.get_axis("move_left", "move_right")
-	var y_axis = Input.get_axis("move_up", "move_down")
-	return Vector2(x_axis, y_axis)
+# 	position.y += z_position
 
-func debug(value: Variant):
-	debug_lines.push_back(str(value))
+# 	if raycast.is_colliding():
+# 		if raycast.get_collider() is TileMapLayer:
+# 			var tile_map_layer: TileMapLayer = raycast.get_collider()
 
-# func _on_floor_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-# 	if body is TileMapLayer:
-# 		var tilemap: TileMapLayer = body as TileMapLayer
-# 		var coords := tilemap.get_coords_for_body_rid(body_rid)
-# 		var tile_data := tilemap.get_cell_tile_data(coords)
-# 		if tile_data.has_custom_data("Stairs"):
-# 			var stairs_vector: Vector2 = tile_data.get_custom_data("Stairs")
-# 			var stairs_pos := tilemap.map_to_local(coords)
-# 			var x_delta := stairs_pos.x - position.x
-# 			var y_delta := stairs_pos.y - position.y
+# 			if current_floor != tile_map_layer:
+# 				print("From %s to %s" % [current_floor_name, tile_map_layer.name])
+# 				if current_floor != null:
+# 					current_floor.modulate = Color.WHITE
+# 					current_floor.tile_set.set_physics_layer_collision_layer(0, 0)
+# 				current_floor = tile_map_layer
 
-# 			var z_delta = lerp(0, 1, x_delta)
-# 			print(z_delta)
+# 			current_floor.modulate = Color.RED
+# 			current_floor.tile_set.set_physics_layer_collision_layer(0, 1)
+# 			z_position = current_floor.get_parent().position.y
+# 			print(tile_map_layer.name)
+
+# 	z_index = z_position
+# 	debug("Z: %0.1f" % z_position)
+# 	# for body in floor_area.get_overlapping_bodies():
+# 	# 	if body is TileMapLayer:
+# 	# 		var tilemap: TileMapLayer = body as TileMapLayer
+# 	# 		var coords := tilemap.local_to_map(position)
+# 	# 		var tile_data := tilemap.get_cell_tile_data(coords)
+# 	# 		if tile_data != null:
+# 	# 			if tile_data.has_custom_data("Height"):
+# 	# 				var height: float = tile_data.get_custom_data("Height")
+# 	# 				z_position = height
+# 	# 			if tile_data.has_custom_data("Stairs"):
+# 	# 				var stairs_direction: String = tile_data.get_custom_data("Stairs")
+
+# 	# 				if not STAIRS_DIRECTIONS.has(stairs_direction):
+# 	# 					continue
+
+# 	# 				var dir: Vector2 = STAIRS_DIRECTIONS[stairs_direction] * 380
+
+# 	# 				var stairs_pos: Vector2 = tilemap.map_to_local(coords) + OFFSETS[stairs_direction]
+# 	# 				DebugDraw2D.arrow(stairs_pos, stairs_pos + dir, Color.RED, 3)
+# 	# 				var x_delta := stairs_pos.x - position.x
+
+# 	# 				var z_delta = lerp(0, 1, x_delta)
+# 	# 				debug(x_delta)
+
+# 	position.y -= z_position
+# 	debug("State: %s" % current_state.get_script().get_global_name().replace("State", ""))
+# 	debug("Hooked: %s" % hooked_target.name if hooked_target else "None")
+# 	var next_state = current_state.process(delta)
+# 	if next_state != null and next_state != current_state:
+# 		var old_state = current_state
+# 		old_state.on_exit()
+# 		current_state = next_state
+# 		next_state.on_enter(old_state)
+
+# 	debug("Rotation: %0.2f" % rad_to_deg(velocity.angle()))
+# 	var rot = rad_to_deg(velocity.angle())
+
+# 	var animation_name = "idle"
+# 	if velocity.length() > acceleration * 10:
+# 		direction = velocity.normalized()
+# 		animation_name = "run"
+
+# 	# 8 directions
+
+# 	if rot < -157.5 and rot > -180:
+# 		animation_name += "_SW"
+# 	elif rot < -112.5 and rot > -157.5:
+# 		animation_name += "_W"
+# 	elif rot < -67.5 and rot > -112.5:
+# 		animation_name += "_NW"
+# 	elif rot < -22.5 and rot > -67.5:
+# 		animation_name += "_N"
+# 	elif rot > -22.5 and rot < 22.5:
+# 		animation_name += "_NE"
+# 	elif rot > 22.5 and rot < 67.5:
+# 		animation_name += "_E"
+# 	elif rot > 67.5 and rot < 112.5:
+# 		animation_name += "_SE"
+# 	elif rot > 112.5 and rot < 157.5:
+# 		animation_name += "_S"
+# 	elif rot > 157.5 and rot < 180:
+# 		animation_name += "_SW"
+# 	else:
+# 		animation_name += "_N"
+
+# 	animation_player.play(animation_name)
+
+# 	if hooked_target != null:
+# 		DebugDraw2D.line(position, hooked_target.position, Color.RED, 3.0)
+
+# 	debug_label.text = "\n".join(debug_lines)
+# 	debug_lines.clear()
+
+# func _physics_process(delta):
+# 	current_state.physics_process(delta)
+# 	move_and_slide()
+
+
+# func get_move_axis():
+# 	var x_axis = Input.get_axis("move_left", "move_right")
+# 	var y_axis = Input.get_axis("move_up", "move_down")
+# 	return Vector2(x_axis, y_axis)
+
+# func debug(value: Variant):
+# 	debug_lines.push_back(str(value))
+
+# # func _on_floor_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+# # 	if body is TileMapLayer:
+# # 		var tilemap: TileMapLayer = body as TileMapLayer
+# # 		var coords := tilemap.get_coords_for_body_rid(body_rid)
+# # 		var tile_data := tilemap.get_cell_tile_data(coords)
+# # 		if tile_data.has_custom_data("Stairs"):
+# # 			var stairs_vector: Vector2 = tile_data.get_custom_data("Stairs")
+# # 			var stairs_pos := tilemap.map_to_local(coords)
+# # 			var x_delta := stairs_pos.x - position.x
+# # 			var y_delta := stairs_pos.y - position.y
+
+# # 			var z_delta = lerp(0, 1, x_delta)
+# # 			print(z_delta)

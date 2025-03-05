@@ -1,8 +1,8 @@
 class_name BaseState
 
-var player: Player
+var player: Player3DVersion
 
-func _init(player_: Player) -> void:
+func _init(player_: Player3DVersion) -> void:
 	self.player = player_
 
 func on_enter(_previous_state: BaseState):

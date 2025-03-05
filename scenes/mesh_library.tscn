@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2oe1awhmbv63"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lk6o6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lafwg"]
+albedo_color = Color(0.329, 0.7, 0.656717, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lk6o6"]
+size = Vector2(1, 1)
+center_offset = Vector3(0, -0.49, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_06rdc"]
+size = Vector3(1, 1, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lk6o6"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.239216)
+
+[node name="MeshLibrary" type="Node3D"]
+
+[node name="Block" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500036, 0)
+visible = false
+mesh = SubResource("BoxMesh_lk6o6")
+surface_material_override/0 = SubResource("StandardMaterial3D_lafwg")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500036, 0)
+visible = false
+mesh = SubResource("PlaneMesh_lk6o6")
+
+[node name="WallS" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500036, 0.375)
+visible = false
+mesh = SubResource("BoxMesh_06rdc")
+surface_material_override/0 = SubResource("StandardMaterial3D_lafwg")
+
+[node name="WallN" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500036, -0.375)
+visible = false
+mesh = SubResource("BoxMesh_06rdc")
+surface_material_override/0 = SubResource("StandardMaterial3D_lafwg")
+
+[node name="WallE" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, 0.500036, 0)
+visible = false
+mesh = SubResource("BoxMesh_06rdc")
+surface_material_override/0 = SubResource("StandardMaterial3D_lafwg")
+
+[node name="WallW" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.375, 0.500036, 0)
+visible = false
+mesh = SubResource("BoxMesh_06rdc")
+surface_material_override/0 = SubResource("StandardMaterial3D_lafwg")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500036, 0)
+material = SubResource("StandardMaterial3D_lk6o6")

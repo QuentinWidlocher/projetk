@@ -857,6 +857,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_qhqgy")
 
 [node name="FloorArea2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 12
 
@@ -923,3 +924,5 @@ collision_mask = 3
 shape = SubResource("CircleShape2D_ujl30")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 21)
+collision_mask = 8

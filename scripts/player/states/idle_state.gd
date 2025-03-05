@@ -19,4 +19,5 @@ func process(_delta: float):
 
 func physics_process(delta: float):
 	# Decelerate
-	player.velocity = player.velocity.lerp(Vector2.ZERO, delta * player.decceleration)
+	var lerped = player.velocity.lerp(Vector3.ZERO, delta * player.decceleration)
+	player.velocity = Vector3(lerped.x, player.velocity.y, lerped.z)

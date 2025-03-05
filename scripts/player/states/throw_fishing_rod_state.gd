@@ -2,7 +2,7 @@ class_name ThrowFishingRodState
 extends BaseState
 
 var area: Area2D
-var direction: Vector2 = Vector2.ZERO
+var direction: Vector3 = Vector3.ZERO
 var speed: float = 1000.0
 var max_time: float = 1.5
 var current_time: float = 0.0
@@ -44,7 +44,8 @@ func process(delta: float):
 
 func physics_process(delta: float):
 	# Decelerate
-	player.velocity = player.velocity.lerp(Vector2.ZERO, delta * player.decceleration)
+	var lerped = player.velocity.lerp(Vector3.ZERO, delta * player.decceleration)
+	player.velocity = Vector3(lerped.x, player.velocity.y, lerped.z)
 
 func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int):
 	if body is TileMapLayer:

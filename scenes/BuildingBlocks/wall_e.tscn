@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://chlec5brwynta"]
+
+[ext_resource type="PackedScene" uid="uid://bwntb01clj35d" path="res://scenes/BuildingBlocks/base.tscn" id="1_a5jst"]
+[ext_resource type="Texture2D" uid="uid://mx0oq0ey05v4" path="res://assets/BlocksDef/009_wall_E.png" id="2_a5jst"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a0653"]
+size = Vector3(1, 1, 0.25)
+
+[node name="Base2" instance=ExtResource("1_a5jst")]
+
+[node name="Sprite3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22794, 0)
+custom_aabb = AABB(0.25, -1.23, -0.5, 0.25, 1, 1)
+texture = ExtResource("2_a5jst")
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, 0.499945, 0)
+visible = false
+shape = SubResource("BoxShape3D_a0653")
