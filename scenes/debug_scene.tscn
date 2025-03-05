@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=4 uid="uid://21woj7tc1vty"]
+[gd_scene load_steps=5 format=4 uid="uid://21woj7tc1vty"]
 
 [ext_resource type="PackedScene" uid="uid://bexxaeethfndr" path="res://scenes/player.tscn" id="1_3e1qr"]
 [ext_resource type="TileSet" uid="uid://65oayjapelfs" path="res://resources/proto_tile_set.tres" id="2_n1i7m"]
 [ext_resource type="Script" uid="uid://d16803yedf2o1" path="res://scripts/hide_collisions.gd" id="3_6l2vu"]
+[ext_resource type="PackedScene" uid="uid://cv25mdqxenjvf" path="res://scenes/bat.tscn" id="4_3uthi"]
 
 [node name="DebugScene" type="Node2D"]
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_3e1qr")]
-position = Vector2(2607, 2056)
+position = Vector2(1627, 2353)
 acceleration = 5.0
 decceleration = 5.0
 
@@ -50,3 +51,6 @@ script = ExtResource("3_6l2vu")
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAPAP//CgAMAAEAAAAUAAUACgAMAAEAAAA=")
 tile_set = ExtResource("2_n1i7m")
+
+[node name="Bat" parent="." instance=ExtResource("4_3uthi")]
+position = Vector2(3333, 1663)

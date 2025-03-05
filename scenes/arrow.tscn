@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cat3hp2yshtw8"]
+
+[ext_resource type="Script" uid="uid://dp36cdkyoo7o7" path="res://scripts/arrow.gd" id="1_23jat"]
+[ext_resource type="Texture2D" uid="uid://b6x7j80uny57e" path="res://assets/tank_bulletFly4.png" id="1_umosx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ss3tx"]
+radius = 24.0832
+
+[node name="Arrow" type="StaticBody2D"]
+script = ExtResource("1_23jat")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_umosx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(71, 0)
+shape = SubResource("CircleShape2D_ss3tx")

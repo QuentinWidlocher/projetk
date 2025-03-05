@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv25mdqxenjvf"]
+
+[ext_resource type="Script" uid="uid://cegpkb41bi4wk" path="res://scripts/bat.gd" id="1_48wkk"]
+[ext_resource type="Texture2D" uid="uid://dbn6skwgvvwqn" path="res://assets/Enemy sprites/bat.png" id="1_cnldk"]
+[ext_resource type="Texture2D" uid="uid://cwgokhsennyu7" path="res://assets/Enemy sprites/bat_fly.png" id="2_48wkk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnldk"]
+radius = 131.061
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ss3tx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cnldk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_48wkk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bat" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_48wkk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -147)
+shape = SubResource("CircleShape2D_cnldk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -148)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ss3tx")
+autoplay = "default"
+frame = 1
+frame_progress = 0.512685
+
+[node name="TargetArea2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TargetArea2D"]
+visible = false
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(384, -64, 124, -189, -139, -189, -384, -64, -384, 64, -139, 189, 124, 194, 382, 64)
+
+[node name="VisionArea2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea2D"]
+visible = false
+scale = Vector2(5, 5)
+polygon = PackedVector2Array(384, -64, 124, -189, -139, -189, -384, -64, -384, 64, -139, 189, 124, 194, 382, 64)
+
+[node name="AttackTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="DebugLabel" type="Label" parent="."]
+unique_name_in_owner = true
+z_index = 10
+z_as_relative = false
+offset_left = 95.0
+offset_top = -240.0
+offset_right = 135.0
+offset_bottom = -217.0
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Debug Label"
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]

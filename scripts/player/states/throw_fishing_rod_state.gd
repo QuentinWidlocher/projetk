@@ -41,6 +41,7 @@ func process(delta: float):
 	current_time += delta
 
 	if Input.is_action_just_pressed("fishing_rod"):
+		player.target_line.visible = false
 		return IdleState.new(player)
 
 
