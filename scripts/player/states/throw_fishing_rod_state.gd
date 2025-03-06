@@ -31,6 +31,7 @@ func process(delta: float):
 		return IdleState.new(player)
 
 	if touched:
+		player.target_line.visible = false
 		return IdleState.new(player)
 
 	if current_time >= max_time:
@@ -59,5 +60,6 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 		if tile_data.get_custom_data("FishingRodTarget"):
 			var pos := tilemap.map_to_local(coords)
 			var node_at_pos := Node2D.new()
-			node_at_pos.position = pos
+			node_at_pos.name = "FishingRod"
+			node_at_pos.position = Vector2(pos.x, pos.y - 200)
 			hooked = node_at_pos

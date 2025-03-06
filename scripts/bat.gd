@@ -1,44 +1,23 @@
 class_name Bat
-extends CharacterBody2D
+extends Enemy
 
-enum State {
-	IDLE,
-	MOVE,
-	ATTACK,
-	COOLDOWN,
-}
-
-const STATES = ["Idle", "Move", "Attack", "Cooldown"]
 const ARROW = preload("res://scenes/arrow.tscn")
 
-@export var max_speed: float = 800
-@export var acceleration: float = 10
-@export var decceleration: float = 10
-
 @onready var target_area: Area2D = $TargetArea2D
-@onready var vision_area: Area2D = $VisionArea2D
 @onready var move_timer: Timer = $MoveTimer
-@onready var debug_label: Label = %DebugLabel
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-
-var current_state: State = State.IDLE
-
-var player: Player = null
 
 var too_close = false
 
 func _process(delta: float) -> void:
-	player = null
-	for body in vision_area.get_overlapping_bodies():
-		if body is Player:
-			player = body
+	super(delta)
 
 	var target_too_close = false
 	for body in target_area.get_overlapping_bodies():
 		if body is Player:
 			target_too_close = true
 
-	debug_label.text = "State: %s\nCan See Player: %s\nTarget Too Close: %s\nTimer: %0.1f" % [STATES[current_state], player != null, target_too_close, move_timer.time_left]
+	debug_label.write("Target Too Close: %s" % target_too_close)
+	debug_label.write("Timer: %0.1f" % move_timer.time_left)
 
 	match current_state:
 		State.IDLE:
@@ -66,6 +45,11 @@ func _process(delta: float) -> void:
 				too_close = target_too_close
 
 				velocity = velocity.lerp(direction * max_speed, delta * acceleration)
+		State.ATTACK:
+			velocity = velocity.lerp(Vector2.ZERO, delta * decceleration)
+		State.DYING:
+			velocity = Vector2.ZERO
+			animation_player.play("dying")
 
 	move_and_slide()
 

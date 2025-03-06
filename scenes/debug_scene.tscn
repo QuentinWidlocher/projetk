@@ -9,7 +9,7 @@
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_3e1qr")]
-position = Vector2(1627, 2353)
+position = Vector2(3463, 3237)
 acceleration = 5.0
 decceleration = 5.0
 

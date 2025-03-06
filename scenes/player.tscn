@@ -1,6 +1,8 @@
-[gd_scene load_steps=84 format=3 uid="uid://bexxaeethfndr"]
+[gd_scene load_steps=89 format=3 uid="uid://bexxaeethfndr"]
 
 [ext_resource type="Script" uid="uid://dhbf6g4jagno6" path="res://scripts/player.gd" id="1_qhqgy"]
+[ext_resource type="Script" uid="uid://jfi663m2b1l" path="res://addons/bezier-line-2d/bezier_line2d.gd" id="2_2a3c5"]
+[ext_resource type="Script" uid="uid://bpkxmdfsplv5c" path="res://scripts/debug_label.gd" id="2_h7ic4"]
 [ext_resource type="Texture2D" uid="uid://bpnd4oxgbw5fp" path="res://assets/kenney_isometric-miniature-prototype/Characters/Human/Human_2_Idle0.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cd2luyuxwrybk" path="res://assets/kenney_isometric-miniature-prototype/Characters/Human/Human_0_Idle0.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bj80qr0wld4ub" path="res://assets/kenney_isometric-miniature-prototype/Characters/Human/Human_2_Run0.png" id="4_a38lo"]
@@ -57,9 +59,16 @@
 [ext_resource type="Texture2D" uid="uid://b7upg6b8evb3m" path="res://assets/kenney_isometric-miniature-prototype/Characters/Human/Human_7_Run8.png" id="44_fuw3a"]
 [ext_resource type="Texture2D" uid="uid://dcqjyitvmpuun" path="res://assets/kenney_isometric-miniature-prototype/Characters/Human/Human_3_Run9.png" id="44_tk41t"]
 [ext_resource type="Texture2D" uid="uid://dng72wevllbwl" path="res://assets/kenney_isometric-miniature-prototype/Characters/Human/Human_7_Run9.png" id="45_8txt3"]
+[ext_resource type="Script" uid="uid://dofscwlic7oky" path="res://scripts/swoosh.gd" id="57_42b1b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ke2ow"]
 radius = 50.0
+
+[sub_resource type="Curve2D" id="Curve2D_42b1b"]
+_data = {
+"points": PackedVector2Array(199.375, 146.925, 0, 0, 0, 0, 0, 0, 8.68381, -26.5303, 179, -535)
+}
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_8svfe"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
@@ -798,6 +807,42 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Area2D:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Area2D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.21657]
+}
 
 [sub_resource type="Animation" id="Animation_ujl30"]
 resource_name = "swoosh"
@@ -838,6 +883,42 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0151228, 0.170586),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Area2D:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0151228, 0.170586),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Area2D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.160907),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.21657, -0.0680678]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pf23h"]
 _data = {
@@ -848,6 +929,10 @@ _data = {
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dt7fs"]
 blend_mode = 1
 light_mode = 1
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2a3c5"]
+radius = 45.8334
+height = 435.858
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujl30"]
 radius = 100.0
@@ -873,6 +958,13 @@ offset_bottom = -217.0
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Debug Label"
+script = ExtResource("2_h7ic4")
+
+[node name="BezierLine2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_42b1b")
+script = ExtResource("2_2a3c5")
+caps = 1
+metadata/_custom_type_script = "uid://jfi663m2b1l"
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -895,6 +987,7 @@ libraries = {
 
 [node name="Swoosh" type="Node2D" parent="."]
 scale = Vector2(1, 0.479999)
+script = ExtResource("57_42b1b")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Swoosh"]
 root_node = NodePath("../Sprite")
@@ -910,6 +1003,18 @@ texture = ExtResource("23_4ni07")
 hframes = 5
 vframes = 2
 
+[node name="Area2D" type="Area2D" parent="Swoosh/Sprite"]
+rotation = 2.21657
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Swoosh/Sprite/Area2D"]
+position = Vector2(155, 252.084)
+rotation = 1.00007
+shape = SubResource("CapsuleShape2D_2a3c5")
+
 [node name="Target" type="Node2D" parent="."]
 visible = false
 
@@ -924,3 +1029,5 @@ collision_mask = 3
 shape = SubResource("CircleShape2D_ujl30")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+
+[connection signal="body_entered" from="Swoosh/Sprite/Area2D" to="Swoosh" method="_on_area_2d_body_entered"]
