@@ -21,12 +21,14 @@ func on_enter(_previous_state: BaseState):
 	current_time = 0.0
 
 	player.hooked_target = null
+	(player.target_shape.shape as CircleShape2D).radius = 40
 
 func on_exit():
 	player.target.visible = false
 	player.target.position = Vector2.ZERO
 
 func process(delta: float):
+	(player.target_shape.shape as CircleShape2D).radius *= 1 + 1 * delta
 
 	if hooked != null:
 		player.hooked_target = hooked

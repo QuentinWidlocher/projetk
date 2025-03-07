@@ -14,6 +14,46 @@ animations = [{
 "texture": ExtResource("2_pdogm")
 }],
 "loop": true,
+"name": &"hit_E",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bhtyu")
+}],
+"loop": true,
+"name": &"hit_N",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jyfpx")
+}],
+"loop": true,
+"name": &"hit_NE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_mehnl")
+}],
+"loop": true,
+"name": &"hit_NW",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vvk01")
+}],
+"loop": true,
+"name": &"hit_SE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pdogm")
+}],
+"loop": true,
 "name": &"idle_E",
 "speed": 5.0
 }, {
@@ -92,5 +132,5 @@ animations = [{
 
 [node name="Player" instance=ExtResource("1_370us")]
 
-[node name="AnimatedSprite2D" parent="." index="3"]
+[node name="AnimatedSprite2D" parent="." index="9"]
 sprite_frames = SubResource("SpriteFrames_8e7k3")

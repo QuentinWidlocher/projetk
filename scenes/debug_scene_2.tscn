@@ -9,7 +9,7 @@ y_sort_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_56r28")]
 position = Vector2(528, -133)
 collision_layer = 1
-wall_min_slide_angle = 0.0
+wall_min_slide_angle = 0.261799
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(10, -54)

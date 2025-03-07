@@ -1,7 +1,15 @@
 class_name AimState
 extends BaseState
 
+func on_enter(_previous_state: BaseState):
+	player.aim_arrow.visible = true
+
+func on_exit():
+	player.aim_arrow.visible = false
+
 func process(_delta: float):
+	player.aim_arrow.rotation = player.direction.angle()
+
 	player.play_animation("idle")
 
 	if Input.is_action_just_released("fishing_rod"):

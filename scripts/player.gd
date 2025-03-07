@@ -13,8 +13,10 @@ extends CharacterBody2D
 @onready var swoosh_sprite: Sprite2D = $Swoosh/Sprite
 @onready var swoosh_animation_player: AnimationPlayer = $Swoosh/AnimationPlayer
 @onready var target: Node2D = $Target
+@onready var target_shape: CollisionShape2D = $Target/Area2D/CollisionShape2D
 @onready var target_line: BezierLine2D = $BezierLine2D
 @onready var hooked_target: Node2D
+@onready var aim_arrow: Node2D = %AimArrow/Pivot
 
 var current_state: BaseState = IdleState.new(self)
 var direction: Vector2 = Vector2.ZERO

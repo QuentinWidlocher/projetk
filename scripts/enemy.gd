@@ -1,13 +1,15 @@
 class_name Enemy
 extends CharacterBody2D
 
-@export var max_health: float = 100
-@export var max_speed: float = 800
-@export var acceleration: float = 10
-@export var decceleration: float = 10
-@export var knockback: float = 2000
+var max_health: float = 100
+var max_speed: float = 800
+var acceleration: float = 10
+var decceleration: float = 10
+var knockback: float = 2000
+var self_knockback_mult: float = 1
 
 @onready var vision_area: Area2D = $VisionArea2D
+@onready var vision_shape: CollisionPolygon2D = $VisionArea2D/CollisionPolygon2D
 @onready var debug_label: DebugLabel = %DebugLabel
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
@@ -37,7 +39,16 @@ func _process(_delta: float) -> void:
 
 func on_hit(damage: int, source_position: Vector2, knockback_force: float):
 	health -= damage
-	velocity = (global_position - source_position).normalized() * knockback_force
+	velocity = (global_position - source_position).normalized() * knockback_force * self_knockback_mult
 	animation_player.play("hit")
 	if health <= 0:
 		current_state = State.DYING
+
+func _load_resource(enemy_resource: EnemyResource) -> void:
+	max_health = enemy_resource.max_health
+	max_speed = enemy_resource.max_speed
+	acceleration = enemy_resource.acceleration
+	decceleration = enemy_resource.decceleration
+	knockback = enemy_resource.knockback
+	self_knockback_mult = enemy_resource.self_knockback_mult
+	vision_shape.scale = Vector2(enemy_resource.vision_distance, enemy_resource.vision_distance)

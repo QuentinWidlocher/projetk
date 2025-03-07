@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BatResource" load_steps=2 format=3 uid="uid://bktw7freoix3w"]
+
+[ext_resource type="Script" uid="uid://crhoxio1epi1e" path="res://scripts/bat_resource.gd" id="1_ugo4a"]
+
+[resource]
+script = ExtResource("1_ugo4a")
+safe_distance = 3.0
+attack_interval = 2.0
+move_interval = 2.0
+move_timeout_interval = 2.0
+max_health = 20.0
+knockback = 1.0
+self_knockback_mult = 1.0
+vision_distance = 1.0
+max_speed = 800.0
+acceleration = 10.0
+decceleration = 10.0
+metadata/_custom_type_script = "uid://crhoxio1epi1e"

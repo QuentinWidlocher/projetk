@@ -27,6 +27,16 @@ window/size/mode=2
 
 enabled=PackedStringArray("res://addons/bezier-line-2d/plugin.cfg", "res://addons/debugdraw2d/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "red",
+"res://assets/": "orange",
+"res://resources/": "yellow",
+"res://scenes/": "green",
+"res://scripts/": "blue"
+}
+
 [input]
 
 move_up={
@@ -92,3 +102,4 @@ object_category_1={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

@@ -112,7 +112,7 @@ collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TargetArea2D"]
 visible = false
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 polygon = PackedVector2Array(384, -64, 124, -189, -139, -189, -384, -64, -384, 64, -139, 189, 124, 194, 382, 64)
 
 [node name="VisionArea2D" type="Area2D" parent="."]
@@ -125,10 +125,14 @@ scale = Vector2(5, 5)
 polygon = PackedVector2Array(384, -64, 124, -189, -139, -189, -384, -64, -384, 64, -139, 189, 124, 194, 382, 64)
 
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="MoveTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
+
+[node name="MoveTimeoutTimer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="DebugLabel" type="Label" parent="."]
 unique_name_in_owner = true
@@ -151,3 +155,4 @@ libraries = {
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="MoveTimeoutTimer" to="." method="_on_move_timeout_timer_timeout"]
