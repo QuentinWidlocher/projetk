@@ -12,8 +12,8 @@ func _process(delta: float) -> void:
 	super(delta)
 
 	var target_too_close = false
-	for body in target_area.get_overlapping_bodies():
-		if body is Player:
+	for body in target_area.get_overlapping_areas():
+		if body.get_parent() is Player:
 			target_too_close = true
 
 	debug_label.write("Target Too Close: %s" % target_too_close)
@@ -55,6 +55,7 @@ func _process(delta: float) -> void:
 
 func fire_arrow(direction: Vector2):
 	var arrow_instance: Arrow = ARROW.instantiate()
+	arrow_instance.knockback = knockback
 	arrow_instance.global_rotation = direction.angle()
 	arrow_instance.global_position = sprite.global_position + direction * 100
 	get_tree().current_scene.add_child(arrow_instance)

@@ -2,6 +2,11 @@ class_name IdleState
 extends BaseState
 
 func process(_delta: float):
+	if player.velocity.length() > player.acceleration * 10:
+		player.play_animation("run")
+	else:
+		player.play_animation("idle")
+
 	var move_axis = player.get_move_axis().normalized()
 
 	if Input.is_action_just_pressed("attack"):
@@ -14,5 +19,4 @@ func process(_delta: float):
 		return RunState.new(player)
 
 func physics_process(delta: float):
-	# Decelerate
-	player.velocity = player.velocity.lerp(Vector2.ZERO, delta * player.decceleration)
+	player.decelerate(delta)

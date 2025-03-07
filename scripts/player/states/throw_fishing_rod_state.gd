@@ -10,6 +10,7 @@ var hooked: Node2D = null
 var touched := false
 
 func on_enter(_previous_state: BaseState):
+	player.play_animation("idle")
 	area = player.target.get_node("Area2D")
 
 	area.body_shape_entered.connect(self._on_body_shape_entered)
@@ -26,6 +27,7 @@ func on_exit():
 	player.target.position = Vector2.ZERO
 
 func process(delta: float):
+
 	if hooked != null:
 		player.hooked_target = hooked
 		return IdleState.new(player)
@@ -47,8 +49,7 @@ func process(delta: float):
 
 
 func physics_process(delta: float):
-	# Decelerate
-	player.velocity = player.velocity.lerp(Vector2.ZERO, delta * player.decceleration)
+	player.decelerate(delta)
 
 func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int):
 	if body is TileMapLayer:

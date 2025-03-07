@@ -2,6 +2,8 @@ class_name AimState
 extends BaseState
 
 func process(_delta: float):
+	player.play_animation("idle")
+
 	if Input.is_action_just_released("fishing_rod"):
 		if player.hooked_target != null:
 			return ReelFishingRodState.new(player)
@@ -13,5 +15,4 @@ func process(_delta: float):
 
 
 func physics_process(delta: float):
-	# Decelerate
-	player.velocity = player.velocity.lerp(Vector2.ZERO, delta * player.decceleration)
+	player.decelerate(delta)

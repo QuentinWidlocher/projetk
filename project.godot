@@ -85,7 +85,7 @@ object_category_1={
 2d_physics/layer_1="Walls"
 2d_physics/layer_2="Hooks"
 2d_physics/layer_3="Holes"
-2d_physics/layer_4="Enemies"
+2d_physics/layer_4="Player and enemies"
 
 [rendering]
 

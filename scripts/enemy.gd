@@ -27,17 +27,17 @@ const STATES = ["Idle", "Move", "Attack", "Dying"]
 
 func _process(_delta: float) -> void:
 	player = null
-	for body in vision_area.get_overlapping_bodies():
-		if body is Player:
-			player = body
+	for body in vision_area.get_overlapping_areas():
+		if body.get_parent() is Player:
+			player = body.get_parent()
 
 	debug_label.write("State: %s" % STATES[current_state])
 	debug_label.write("Health: %d/%d" % [health, max_health])
 	debug_label.write("Can See Player: %s" % (player != null))
 
-func on_hit(damage: int, source_position: Vector2):
+func on_hit(damage: int, source_position: Vector2, knockback_force: float):
 	health -= damage
-	velocity = (global_position - source_position).normalized() * knockback
+	velocity = (global_position - source_position).normalized() * knockback_force
 	animation_player.play("hit")
 	if health <= 0:
 		current_state = State.DYING

@@ -93,11 +93,6 @@ _data = {
 collision_layer = 9
 motion_mode = 1
 script = ExtResource("1_48wkk")
-max_health = null
-max_speed = null
-acceleration = null
-decceleration = null
-knockback = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -147)
@@ -112,6 +107,8 @@ frame = 1
 frame_progress = 0.512685
 
 [node name="TargetArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TargetArea2D"]
 visible = false
@@ -119,6 +116,8 @@ scale = Vector2(2, 2)
 polygon = PackedVector2Array(384, -64, 124, -189, -139, -189, -384, -64, -384, 64, -139, 189, 124, 194, 382, 64)
 
 [node name="VisionArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea2D"]
 visible = false

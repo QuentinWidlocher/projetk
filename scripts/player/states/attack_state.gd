@@ -20,7 +20,6 @@ func on_exit():
 	pass
 
 func process(_delta: float):
-	# previous_state.process(delta)
 	if done:
 		return IdleState.new(player)
 
