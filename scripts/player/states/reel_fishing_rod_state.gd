@@ -16,6 +16,8 @@ func on_exit():
 	player.target_line.visible = false
 
 func process(delta: float):
+	player.play_animation("run")
+
 	var dir = player.hooked_target.position - player.position
 	player.velocity = player.velocity.lerp(dir.normalized() * current_reel_speed, delta)
 	current_reel_speed += acceleration
@@ -23,5 +25,5 @@ func process(delta: float):
 	if dir.length() < reel_distance:
 		return IdleState.new(player)
 
-func physics_process(delta: float):
+func physics_process(_delta: float):
 	pass

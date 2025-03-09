@@ -11,7 +11,6 @@ const ARROW = preload("res://scenes/arrow.tscn")
 @onready var move_timer: Timer = $MoveTimer
 @onready var move_timeout_timer: Timer = $MoveTimeoutTimer
 
-var safe_distance: float = 3
 var too_close = false
 
 func _ready():
@@ -22,15 +21,17 @@ func _process(delta: float) -> void:
 	super(delta)
 
 	var target_too_close = false
-	for body in target_area.get_overlapping_areas():
-		if body.get_parent() is Player:
+	for body in target_area.get_overlapping_bodies():
+		if body is Player:
 			target_too_close = true
 
 	debug_label.write("Target Too Close: %s" % target_too_close)
+	debug_label.write("Attack timeout: %0.1f" % attack_timer.time_left)
 	debug_label.write("Timer: %0.1f" % move_timer.time_left)
 
 	match current_state:
 		State.IDLE:
+			velocity = velocity.lerp(Vector2.ZERO, delta * decceleration)
 			too_close = target_too_close
 			if player != null:
 				current_state = State.MOVE

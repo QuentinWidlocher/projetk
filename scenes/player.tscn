@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://bexxaeethfndr"]
+[gd_scene load_steps=108 format=3 uid="uid://bexxaeethfndr"]
 
 [ext_resource type="Script" uid="uid://dhbf6g4jagno6" path="res://scripts/player.gd" id="1_qhqgy"]
 [ext_resource type="Script" uid="uid://jfi663m2b1l" path="res://addons/bezier-line-2d/bezier_line2d.gd" id="2_2a3c5"]
@@ -66,6 +66,7 @@
 [ext_resource type="Texture2D" uid="uid://dng72wevllbwl" path="res://assets/kenney_isometric-miniature-prototype/Characters/Human/Human_7_Run9.png" id="45_8txt3"]
 [ext_resource type="Script" uid="uid://dofscwlic7oky" path="res://scripts/swoosh.gd" id="57_42b1b"]
 [ext_resource type="Texture2D" uid="uid://o51oyhjhrn78" path="res://assets/tank_arrowEmpty.png" id="66_fuw3a"]
+[ext_resource type="PackedScene" uid="uid://d06m8e5ndgq3k" path="res://scenes/player_ui.tscn" id="67_8txt3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h7ic4"]
 radius = 53.0
@@ -74,8 +75,24 @@ height = 236.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ke2ow"]
 radius = 50.0
 
+[sub_resource type="Animation" id="Animation_mwp2n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_qsb7e"]
 resource_name = "hit"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -89,9 +106,28 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0.291237, 0.291237, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_qjsmb"]
+resource_name = "invincible"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.188235), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qjsmb"]
 _data = {
-&"hit": SubResource("Animation_qsb7e")
+&"RESET": SubResource("Animation_mwp2n"),
+&"hit": SubResource("Animation_qsb7e"),
+&"invincible": SubResource("Animation_qjsmb")
 }
 
 [sub_resource type="Animation" id="Animation_fjrip"]
@@ -1217,7 +1253,7 @@ _data = {
 point_count = 2
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 16
 collision_mask = 5
 motion_mode = 1
 wall_min_slide_angle = 0.349066
@@ -1254,6 +1290,7 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_qjsmb")
 }
+next/hit = &"hit"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -1292,6 +1329,7 @@ rotation = 1.00007
 shape = SubResource("CapsuleShape2D_2a3c5")
 
 [node name="Target" type="Node2D" parent="."]
+visible = false
 
 [node name="Sprite" type="Sprite2D" parent="Target"]
 z_index = 1
@@ -1330,4 +1368,12 @@ script = ExtResource("2_2a3c5")
 caps = 1
 metadata/_custom_type_script = "uid://jfi663m2b1l"
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="UI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("67_8txt3")]
+player = NodePath("..")
+
+[connection signal="hp_changed" from="." to="UI" method="_on_player_hp_changed"]
 [connection signal="body_entered" from="Swoosh/Sprite/Area2D" to="Swoosh" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

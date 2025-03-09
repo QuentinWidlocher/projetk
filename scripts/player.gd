@@ -17,12 +17,21 @@ extends CharacterBody2D
 @onready var target_line: BezierLine2D = $BezierLine2D
 @onready var hooked_target: Node2D
 @onready var aim_arrow: Node2D = %AimArrow/Pivot
+@onready var invincibility_timer: Timer = $InvincibilityTimer
+
+signal hp_changed(new_hp: float)
 
 var current_state: BaseState = IdleState.new(self)
 var direction: Vector2 = Vector2.ZERO
-var health: float = max_health
+var health: float:
+	get:
+		return health
+	set(new_health):
+		health = new_health
+		emit_signal("hp_changed", health)
 
 func _ready():
+	health = max_health
 	current_state.on_enter(null)
 	pass
 
@@ -67,7 +76,10 @@ func get_move_axis():
 	return Vector2(x_axis, y_axis)
 
 func on_hit(damage: float, source_position: Vector2, knockback_force: float):
-	switch_state(HitState.new(self, damage, source_position, knockback_force))
+	print("timer is stopped ? ", invincibility_timer.is_stopped())
+	if invincibility_timer.is_stopped():
+		switch_state(HitState.new(self, damage, source_position, knockback_force))
+		invincibility_timer.start()
 
 func play_animation(animation_name: String):
 	var rot: float = rad_to_deg(direction.angle())
@@ -103,3 +115,7 @@ func switch_state(new_state: BaseState):
 	old_state.on_exit()
 	current_state = new_state
 	new_state.on_enter(old_state)
+
+func _on_invincibility_timer_timeout() -> void:
+	hit_animation_player.stop()
+	invincibility_timer.stop()

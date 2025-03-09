@@ -2,6 +2,7 @@ class_name EnemyResource
 extends Resource
 
 @export_group("Stats")
+@export var damage: float = 10
 @export var max_health: float = 100
 @export var knockback: float = 1
 @export_range(0.1, 10, 0.1, "suffix: x") var self_knockback_mult: float = 1

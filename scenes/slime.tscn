@@ -1,26 +1,42 @@
-[gd_scene load_steps=11 format=3 uid="uid://cv25mdqxenjvf"]
+[gd_scene load_steps=15 format=3 uid="uid://byur31wwdgjya"]
 
-[ext_resource type="Script" uid="uid://cegpkb41bi4wk" path="res://scripts/bat.gd" id="1_48wkk"]
-[ext_resource type="Texture2D" uid="uid://dbn6skwgvvwqn" path="res://assets/Enemy sprites/bat.png" id="1_cnldk"]
-[ext_resource type="Texture2D" uid="uid://cwgokhsennyu7" path="res://assets/Enemy sprites/bat_fly.png" id="2_48wkk"]
-[ext_resource type="Script" uid="uid://bpkxmdfsplv5c" path="res://scripts/debug_label.gd" id="4_ss3tx"]
+[ext_resource type="Script" uid="uid://c2g8086quybj3" path="res://scripts/slime.gd" id="1_pjw23"]
+[ext_resource type="Texture2D" uid="uid://578cxj7yrqlr" path="res://assets/Enemy sprites/slime_walk.png" id="2_pjw23"]
+[ext_resource type="Texture2D" uid="uid://dedsoy7bdi08j" path="res://assets/Enemy sprites/slime.png" id="3_2npkn"]
+[ext_resource type="Script" uid="uid://bpkxmdfsplv5c" path="res://scripts/debug_label.gd" id="4_gstla"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cnldk"]
-radius = 131.061
+[sub_resource type="Curve" id="Curve_pjw23"]
+_data = [Vector2(0, 0), 0.0, 3.88697, 0, 0, Vector2(0.491667, 0.93052), -1.57077, -1.57077, 0, 0, Vector2(0.685, 0), -9.05676, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_pjw23"]
+offsets = PackedFloat32Array(0, 0.320755, 0.667925, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2npkn"]
+gradient = SubResource("Gradient_pjw23")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ss3tx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_cnldk")
+"texture": ExtResource("2_pjw23")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_48wkk")
+"texture": ExtResource("3_2npkn")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pjw23"]
+radius = 58.0345
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnldk"]
+radius = 101.005
 
 [sub_resource type="Animation" id="Animation_lv0ya"]
 length = 0.001
@@ -65,6 +81,20 @@ tracks/1/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_spawn_smaller_slime"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_5fn3r"]
 resource_name = "hit"
@@ -89,22 +119,37 @@ _data = {
 &"hit": SubResource("Animation_5fn3r")
 }
 
-[node name="Bat" type="CharacterBody2D"]
+[node name="Slime" type="CharacterBody2D"]
 collision_layer = 9
+collision_mask = 13
 motion_mode = 1
-script = ExtResource("1_48wkk")
+script = ExtResource("1_pjw23")
+jump_curve = SubResource("Curve_pjw23")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -147)
-shape = SubResource("CircleShape2D_cnldk")
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.27451)
+scale = Vector2(4, 2)
+texture = SubResource("GradientTexture2D_2npkn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -148)
-scale = Vector2(2, 2)
+position = Vector2(0, -71)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ss3tx")
 autoplay = "default"
 frame = 1
-frame_progress = 0.512685
+frame_progress = 0.00871463
+
+[node name="DamageArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea2D"]
+position = Vector2(0, -68)
+shape = SubResource("CircleShape2D_pjw23")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -65)
+shape = SubResource("CircleShape2D_cnldk")
 
 [node name="TargetArea2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -128,12 +173,6 @@ polygon = PackedVector2Array(384, -64, 124, -189, -139, -189, -384, -64, -384, 6
 wait_time = 2.0
 autostart = true
 
-[node name="MoveTimer" type="Timer" parent="."]
-wait_time = 2.0
-
-[node name="MoveTimeoutTimer" type="Timer" parent="."]
-wait_time = 2.0
-
 [node name="DebugLabel" type="Label" parent="."]
 unique_name_in_owner = true
 z_index = 10
@@ -145,7 +184,7 @@ offset_bottom = -217.0
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Debug Label"
-script = ExtResource("4_ss3tx")
+script = ExtResource("4_gstla")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -153,6 +192,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_5fn3r")
 }
 
+[connection signal="area_entered" from="DamageArea2D" to="." method="_on_damage_area_2d_area_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
-[connection signal="timeout" from="MoveTimeoutTimer" to="." method="_on_move_timeout_timer_timeout"]

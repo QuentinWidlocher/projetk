@@ -4,13 +4,13 @@
 [ext_resource type="TileSet" uid="uid://65oayjapelfs" path="res://resources/proto_tile_set.tres" id="2_n1i7m"]
 [ext_resource type="Script" uid="uid://d16803yedf2o1" path="res://scripts/hide_collisions.gd" id="3_6l2vu"]
 [ext_resource type="PackedScene" uid="uid://cv25mdqxenjvf" path="res://scenes/bat.tscn" id="4_3uthi"]
-[ext_resource type="Resource" uid="uid://bktw7freoix3w" path="res://resources/enemies/blind_bat.tres" id="5_hpymj"]
+[ext_resource type="PackedScene" uid="uid://byur31wwdgjya" path="res://scenes/slime.tscn" id="5_hpymj"]
 
 [node name="DebugScene" type="Node2D"]
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_3e1qr")]
-position = Vector2(2692, 2998)
+position = Vector2(3320, 2672)
 acceleration = 5.0
 decceleration = 5.0
 
@@ -55,8 +55,7 @@ tile_map_data = PackedByteArray("AAAPAP//CgAMAAEAAAAUAAUACgAMAAEAAAA=")
 tile_set = ExtResource("2_n1i7m")
 
 [node name="Bat" parent="." instance=ExtResource("4_3uthi")]
-position = Vector2(3575, 1885)
+position = Vector2(2031, -274)
 
-[node name="Bat2" parent="." instance=ExtResource("4_3uthi")]
-position = Vector2(6056, 2522)
-resource = ExtResource("5_hpymj")
+[node name="Slime" parent="." instance=ExtResource("5_hpymj")]
+position = Vector2(4346, 2170)

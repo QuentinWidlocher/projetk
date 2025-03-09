@@ -5,6 +5,7 @@ var max_health: float = 100
 var max_speed: float = 800
 var acceleration: float = 10
 var decceleration: float = 10
+var damage: float = 10
 var knockback: float = 2000
 var self_knockback_mult: float = 1
 
@@ -29,15 +30,16 @@ const STATES = ["Idle", "Move", "Attack", "Dying"]
 
 func _process(_delta: float) -> void:
 	player = null
-	for body in vision_area.get_overlapping_areas():
-		if body.get_parent() is Player:
-			player = body.get_parent()
+	for body in vision_area.get_overlapping_bodies():
+		if body is Player:
+			player = body
 
 	debug_label.write("State: %s" % STATES[current_state])
 	debug_label.write("Health: %d/%d" % [health, max_health])
 	debug_label.write("Can See Player: %s" % (player != null))
 
 func on_hit(damage: int, source_position: Vector2, knockback_force: float):
+	current_state = State.IDLE
 	health -= damage
 	velocity = (global_position - source_position).normalized() * knockback_force * self_knockback_mult
 	animation_player.play("hit")
@@ -45,6 +47,7 @@ func on_hit(damage: int, source_position: Vector2, knockback_force: float):
 		current_state = State.DYING
 
 func _load_resource(enemy_resource: EnemyResource) -> void:
+	damage = enemy_resource.damage
 	max_health = enemy_resource.max_health
 	max_speed = enemy_resource.max_speed
 	acceleration = enemy_resource.acceleration

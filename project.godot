@@ -32,6 +32,7 @@ enabled=PackedStringArray("res://addons/bezier-line-2d/plugin.cfg", "res://addon
 folder_colors={
 "res://addons/": "red",
 "res://assets/": "orange",
+"res://builds/": "gray",
 "res://resources/": "yellow",
 "res://scenes/": "green",
 "res://scripts/": "blue"
@@ -96,6 +97,7 @@ object_category_1={
 2d_physics/layer_2="Hooks"
 2d_physics/layer_3="Holes"
 2d_physics/layer_4="Player and enemies"
+2d_physics/layer_5="Player's feet"
 
 [rendering]
 
