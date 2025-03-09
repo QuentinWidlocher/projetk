@@ -1,10 +1,27 @@
-[gd_scene load_steps=6 format=4 uid="uid://21woj7tc1vty"]
+[gd_scene load_steps=8 format=4 uid="uid://21woj7tc1vty"]
 
 [ext_resource type="PackedScene" uid="uid://bexxaeethfndr" path="res://scenes/player.tscn" id="1_3e1qr"]
 [ext_resource type="TileSet" uid="uid://65oayjapelfs" path="res://resources/proto_tile_set.tres" id="2_n1i7m"]
 [ext_resource type="Script" uid="uid://d16803yedf2o1" path="res://scripts/hide_collisions.gd" id="3_6l2vu"]
 [ext_resource type="PackedScene" uid="uid://cv25mdqxenjvf" path="res://scenes/bat.tscn" id="4_3uthi"]
 [ext_resource type="PackedScene" uid="uid://byur31wwdgjya" path="res://scenes/slime.tscn" id="5_hpymj"]
+[ext_resource type="Script" uid="uid://t8orc6lg8e3t" path="res://scripts/slime_resource.gd" id="6_gtnwl"]
+
+[sub_resource type="Resource" id="Resource_vmguv"]
+script = ExtResource("6_gtnwl")
+iterations = 2
+max_jump_height = 200.0
+target_distance = 2.0
+attack_interval = 2.0
+move_timeout_interval = 2.0
+damage = 10.0
+max_health = 50.0
+knockback = 1.0
+self_knockback_mult = 1.0
+vision_distance = 2.0
+max_speed = 500.0
+acceleration = 2.0
+decceleration = 2.0
 
 [node name="DebugScene" type="Node2D"]
 y_sort_enabled = true
@@ -58,4 +75,5 @@ tile_set = ExtResource("2_n1i7m")
 position = Vector2(2031, -274)
 
 [node name="Slime" parent="." instance=ExtResource("5_hpymj")]
-position = Vector2(4346, 2170)
+position = Vector2(4546, 2280)
+resource = SubResource("Resource_vmguv")

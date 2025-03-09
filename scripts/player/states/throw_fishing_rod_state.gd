@@ -3,7 +3,7 @@ extends BaseState
 
 var area: Area2D
 var direction: Vector2 = Vector2.ZERO
-var speed: float = 1000.0
+var speed: float = 1500.0
 var max_time: float = 1.5
 var current_time: float = 0.0
 var hooked: Node2D = null
@@ -15,13 +15,13 @@ func on_enter(_previous_state: BaseState):
 
 	area.body_shape_entered.connect(self._on_body_shape_entered)
 
+	player.hooked_target = null
+	(player.target_shape.shape as CircleShape2D).radius = 40
+
 	player.target.visible = true
 	player.target_line.visible = true
 	direction = player.direction
 	current_time = 0.0
-
-	player.hooked_target = null
-	(player.target_shape.shape as CircleShape2D).radius = 40
 
 func on_exit():
 	player.target.visible = false
@@ -45,7 +45,7 @@ func process(delta: float):
 	player.target.position += direction * speed * delta
 	current_time += delta
 
-	if Input.is_action_just_pressed("fishing_rod"):
+	if Input.is_action_just_pressed("fishing_rod") or Input.is_action_just_pressed("attack"):
 		player.target_line.visible = false
 		return IdleState.new(player)
 
@@ -66,3 +66,5 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 			node_at_pos.name = "FishingRod"
 			node_at_pos.position = Vector2(pos.x, pos.y - 200)
 			hooked = node_at_pos
+	elif body is Enemy:
+		hooked = body

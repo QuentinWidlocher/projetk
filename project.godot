@@ -38,6 +38,10 @@ folder_colors={
 "res://scripts/": "blue"
 }
 
+[global_group]
+
+reelable="Should be reeled toward the player, and not the other way around"
+
 [input]
 
 move_up={

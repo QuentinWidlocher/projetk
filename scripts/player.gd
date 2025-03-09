@@ -15,11 +15,17 @@ extends CharacterBody2D
 @onready var target: Node2D = $Target
 @onready var target_shape: CollisionShape2D = $Target/Area2D/CollisionShape2D
 @onready var target_line: BezierLine2D = $BezierLine2D
-@onready var hooked_target: Node2D
 @onready var aim_arrow: Node2D = %AimArrow/Pivot
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 
 signal hp_changed(new_hp: float)
+
+var hooked_target: Node2D:
+	get:
+		return hooked_target
+	set(new_target):
+		hooked_target = new_target
+		target_line.visible = hooked_target != null
 
 var current_state: BaseState = IdleState.new(self)
 var direction: Vector2 = Vector2.ZERO
@@ -109,6 +115,20 @@ func play_animation(animation_name: String):
 
 func decelerate(delta: float):
 	velocity = velocity.lerp(Vector2.ZERO, delta * decceleration)
+
+func run(delta: float):
+	var move_axis = get_move_axis()
+
+	if move_axis.length() > 0:
+		velocity = velocity.lerp(move_axis * max_speed, delta * acceleration)
+	else:
+		decelerate(delta)
+
+func animate_running():
+	if velocity.length() > acceleration * 10:
+		play_animation("run")
+	else:
+		play_animation("idle")
 
 func switch_state(new_state: BaseState):
 	var old_state = current_state

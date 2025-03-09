@@ -14,6 +14,7 @@ func on_enter(previous_state_: BaseState):
 	player.swoosh_sprite.rotation = rotation_to_face_right + aim_angle
 	player.swoosh_animation_player.animation_finished.connect(self._on_animation_finished)
 	player.swoosh_animation_player.play("swoosh")
+	player.hooked_target = null
 
 func on_exit():
 	player.swoosh_animation_player.animation_finished.disconnect(self._on_animation_finished)

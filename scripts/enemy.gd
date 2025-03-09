@@ -38,9 +38,9 @@ func _process(_delta: float) -> void:
 	debug_label.write("Health: %d/%d" % [health, max_health])
 	debug_label.write("Can See Player: %s" % (player != null))
 
-func on_hit(damage: int, source_position: Vector2, knockback_force: float):
+func on_hit(dmg: int, source_position: Vector2, knockback_force: float):
 	current_state = State.IDLE
-	health -= damage
+	health -= dmg
 	velocity = (global_position - source_position).normalized() * knockback_force * self_knockback_mult
 	animation_player.play("hit")
 	if health <= 0:

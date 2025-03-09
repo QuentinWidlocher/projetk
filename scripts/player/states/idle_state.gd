@@ -2,10 +2,7 @@ class_name IdleState
 extends BaseState
 
 func process(_delta: float):
-	if player.velocity.length() > player.acceleration * 10:
-		player.play_animation("run")
-	else:
-		player.play_animation("idle")
+	player.animate_running()
 
 	var move_axis = player.get_move_axis().normalized()
 

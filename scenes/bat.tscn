@@ -89,7 +89,7 @@ _data = {
 &"hit": SubResource("Animation_5fn3r")
 }
 
-[node name="Bat" type="CharacterBody2D"]
+[node name="Bat" type="CharacterBody2D" groups=["reelable"]]
 collision_layer = 9
 motion_mode = 1
 script = ExtResource("1_48wkk")
