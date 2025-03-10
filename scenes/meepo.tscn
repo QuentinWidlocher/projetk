@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dupsmqs8yu54"]
+[gd_scene load_steps=11 format=3 uid="uid://dupsmqs8yu54"]
 
 [ext_resource type="PackedScene" uid="uid://bexxaeethfndr" path="res://scenes/player.tscn" id="1_370us"]
 [ext_resource type="Texture2D" uid="uid://b6h1p5qs2hb7u" path="res://assets/meepo/Meepo_E_idle_1.png" id="2_pdogm"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ck05cv3jkwpw8" path="res://assets/meepo/Meepo_NE_idle_1.png" id="4_jyfpx"]
 [ext_resource type="Texture2D" uid="uid://c1pilxfrtx83b" path="res://assets/meepo/Meepo_NW_idle_1.png" id="5_mehnl"]
 [ext_resource type="Texture2D" uid="uid://qoxeq6x4evqr" path="res://assets/meepo/Meepo_SE_idle_1.png" id="6_vvk01"]
+[ext_resource type="Texture2D" uid="uid://b68mik6yajjpm" path="res://assets/meepo/Meepo_N_run_1.png" id="7_8e7k3"]
+[ext_resource type="Texture2D" uid="uid://b2jfkrpqlcjs4" path="res://assets/meepo/Meepo_N_run_2.png" id="8_j1xlw"]
+[ext_resource type="Texture2D" uid="uid://dopxpyvh72c7g" path="res://assets/meepo/Meepo_N_run_3.png" id="9_n6yms"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8e7k3"]
 animations = [{
@@ -99,11 +102,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("7_8e7k3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_j1xlw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_n6yms")
+}, {
+"duration": 1.0,
 "texture": ExtResource("3_bhtyu")
 }],
 "loop": true,
 "name": &"run_N",
-"speed": 15.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,

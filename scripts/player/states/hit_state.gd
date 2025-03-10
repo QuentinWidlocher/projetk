@@ -21,6 +21,7 @@ func on_enter(_previous_state: BaseState):
 	player.play_animation("hit")
 	player.hit_animation_player.play("hit")
 	player.hit_animation_player.queue("invincible")
+	player.invincibility_timer.start()
 	player.health -= damage
 	player.velocity = direction * knockback_force * 1000
 

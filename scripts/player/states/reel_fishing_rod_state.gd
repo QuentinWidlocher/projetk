@@ -13,6 +13,7 @@ func on_enter(_previous_state: BaseState):
 		reelable_hooked_target.set_collision_mask_value(4, false) # prevent damaging player
 	else:
 		player.set_collision_mask_value(3, false)
+		player.hole_ray_cast.enabled = false
 
 func on_exit():
 
@@ -22,6 +23,7 @@ func on_exit():
 		reelable_hooked_target.set_collision_mask_value(4, true)
 	else:
 		player.set_collision_mask_value(3, true)
+		player.hole_ray_cast.enabled = true
 
 	player.hooked_target = null
 
@@ -40,7 +42,7 @@ func process(delta: float):
 
 	current_reel_speed += acceleration
 
-	if dir.length() < reel_distance:
+	if dir.length() < reel_distance or Input.is_action_just_pressed("attack"):
 		return IdleState.new(player)
 
 func physics_process(_delta: float):

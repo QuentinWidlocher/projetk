@@ -17,6 +17,7 @@ extends CharacterBody2D
 @onready var target_line: BezierLine2D = $BezierLine2D
 @onready var aim_arrow: Node2D = %AimArrow/Pivot
 @onready var invincibility_timer: Timer = $InvincibilityTimer
+@onready var hole_ray_cast: RayCast2D = $HoleRayCast2D
 
 signal hp_changed(new_hp: float)
 
@@ -42,9 +43,14 @@ func _ready():
 	pass
 
 func _process(delta):
+	if hole_ray_cast.is_colliding() and current_state is not FallingInHoleState :
+		switch_state(FallingInHoleState.new(self))
+		return
+
 	debug_label.write("State: %s" % current_state.get_script().get_global_name().replace("State", ""))
 	debug_label.write("HP: %0.2f/%0.2f" % [health, max_health])
 	debug_label.write("Hooked: %s" % (str(hooked_target.name) if hooked_target else "None"))
+
 	var next_state = current_state.process(delta)
 	if next_state != null and next_state != current_state:
 		switch_state(next_state)
@@ -82,10 +88,8 @@ func get_move_axis():
 	return Vector2(x_axis, y_axis)
 
 func on_hit(damage: float, source_position: Vector2, knockback_force: float):
-	print("timer is stopped ? ", invincibility_timer.is_stopped())
 	if invincibility_timer.is_stopped():
 		switch_state(HitState.new(self, damage, source_position, knockback_force))
-		invincibility_timer.start()
 
 func play_animation(animation_name: String):
 	var rot: float = rad_to_deg(direction.angle())

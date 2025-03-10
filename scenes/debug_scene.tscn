@@ -26,24 +26,9 @@ decceleration = 2.0
 [node name="DebugScene" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_3e1qr")]
-position = Vector2(3320, 2672)
-acceleration = 5.0
-decceleration = 5.0
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -100)
-zoom = Vector2(0.68, 0.68)
-limit_left = -4780
-limit_top = -1380
-limit_right = 7590
-limit_bottom = 4440
-limit_smoothed = true
-position_smoothing_enabled = true
-editor_draw_limits = true
-
 [node name="Wall1" type="TileMapLayer" parent="."]
-z_index = -1
+z_index = -2
+y_sort_enabled = true
 position = Vector2(0, 312)
 tile_map_data = PackedByteArray("AAAPAAAACgAIAAAAAAAQAAAACgAIAAAAAAARAAAACgAIAAAAAAASAAAACgAIAAAAAAAOAAAACgAIAAAAAAAOAAEACgAIAAAAAAAOAAIACgAIAAAAAAAOAAMACgAIAAAAAAA=")
 tile_set = ExtResource("2_n1i7m")
@@ -75,5 +60,21 @@ tile_set = ExtResource("2_n1i7m")
 position = Vector2(2031, -274)
 
 [node name="Slime" parent="." instance=ExtResource("5_hpymj")]
-position = Vector2(4546, 2280)
+position = Vector2(5239, 1699)
 resource = SubResource("Resource_vmguv")
+
+[node name="Player" parent="." instance=ExtResource("1_3e1qr")]
+position = Vector2(4763, 2712)
+acceleration = 5.0
+decceleration = 5.0
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -100)
+zoom = Vector2(0.68, 0.68)
+limit_left = -4780
+limit_top = -1380
+limit_right = 7590
+limit_bottom = 4440
+limit_smoothed = true
+position_smoothing_enabled = true
+editor_draw_limits = true
