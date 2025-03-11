@@ -3,23 +3,25 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1pilxfrtx83b"
-path="res://.godot/imported/Meepo_NW_idle_1.png-b53e259f287850a93e16ca6befeb7264.ctex"
+path.bptc="res://.godot/imported/Meepo_NW_idle_1.png-b53e259f287850a93e16ca6befeb7264.bptc.ctex"
+path.astc="res://.godot/imported/Meepo_NW_idle_1.png-b53e259f287850a93e16ca6befeb7264.astc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/meepo/Meepo_NW_idle_1.png"
-dest_files=["res://.godot/imported/Meepo_NW_idle_1.png-b53e259f287850a93e16ca6befeb7264.ctex"]
+dest_files=["res://.godot/imported/Meepo_NW_idle_1.png-b53e259f287850a93e16ca6befeb7264.bptc.ctex", "res://.godot/imported/Meepo_NW_idle_1.png-b53e259f287850a93e16ca6befeb7264.astc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
+compress/mode=2
+compress/high_quality=true
 compress/lossy_quality=0.7
-compress/hdr_compression=1
-compress/normal_map=0
+compress/hdr_compression=0
+compress/normal_map=2
 compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1

@@ -42,6 +42,15 @@ folder_colors={
 
 reelable="Should be reeled toward the player, and not the other way around"
 
+[importer_defaults]
+
+texture={
+&"compress/hdr_compression": 0,
+&"compress/high_quality": true,
+&"compress/mode": 2,
+&"compress/normal_map": 2
+}
+
 [input]
 
 move_up={

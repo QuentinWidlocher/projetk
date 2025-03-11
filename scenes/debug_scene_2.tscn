@@ -38,6 +38,6 @@ modulate = Color(0.8, 0.8, 0.8, 1)
 z_index = -2
 y_sort_enabled = true
 position = Vector2(0, 60)
-tile_map_data = PackedByteArray("AAAAAPz/AAABAAEAAAABAPz/AAAHAAAAAAACAPz/AAAHAAAAAAAAAP3/AAABAAEAAAADAPz/AAAHAAAAAAAAAP7/AAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAAP3/AAABAAEAAAAAAP7/AAABAAEAAAABAPz/AAAHAAAAAAAAAPz/AAABAAEAAAACAPz/AAAHAAAAAAADAPz/AAAHAAAAAAA=")
 tile_set = ExtResource("1_e7lkm")
 collision_enabled = false

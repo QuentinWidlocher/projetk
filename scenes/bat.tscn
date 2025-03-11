@@ -153,6 +153,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_5fn3r")
 }
 
+[node name="HoleRayCast2D" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(0, 20)
+collision_mask = 4
+hit_from_inside = true
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="MoveTimeoutTimer" to="." method="_on_move_timeout_timer_timeout"]

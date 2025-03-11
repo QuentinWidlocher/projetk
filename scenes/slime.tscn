@@ -120,8 +120,8 @@ _data = {
 }
 
 [node name="Slime" type="CharacterBody2D" groups=["reelable"]]
-collision_layer = 9
-collision_mask = 13
+collision_layer = 10
+collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_pjw23")
 jump_curve = SubResource("Curve_pjw23")
@@ -191,6 +191,12 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_5fn3r")
 }
+
+[node name="HoleRayCast2D" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(0, 20)
+collision_mask = 4
+hit_from_inside = true
 
 [connection signal="area_entered" from="DamageArea2D" to="." method="_on_damage_area_2d_area_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

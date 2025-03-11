@@ -144,5 +144,8 @@ animations = [{
 
 [node name="Player" instance=ExtResource("1_370us")]
 
+[node name="DebugLabel" parent="." index="2"]
+visible = false
+
 [node name="AnimatedSprite2D" parent="." index="9"]
 sprite_frames = SubResource("SpriteFrames_8e7k3")

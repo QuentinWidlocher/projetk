@@ -84,6 +84,9 @@ func _process(delta: float) -> void:
 			damage_area.monitorable = true
 			animation_player.play("dying")
 
+		State.FALLING:
+			velocity = velocity.lerp(Vector2.DOWN * 4000, delta)
+
 	move_and_slide()
 
 func _on_attack_timer_timeout() -> void:

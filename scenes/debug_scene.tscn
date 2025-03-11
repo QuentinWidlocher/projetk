@@ -60,11 +60,12 @@ tile_set = ExtResource("2_n1i7m")
 position = Vector2(2031, -274)
 
 [node name="Slime" parent="." instance=ExtResource("5_hpymj")]
-position = Vector2(5239, 1699)
+position = Vector2(3396, 2158)
+collision_mask = 9
 resource = SubResource("Resource_vmguv")
 
 [node name="Player" parent="." instance=ExtResource("1_3e1qr")]
-position = Vector2(4763, 2712)
+position = Vector2(4611, 2852)
 acceleration = 5.0
 decceleration = 5.0
 

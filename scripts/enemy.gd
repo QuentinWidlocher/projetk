@@ -14,6 +14,7 @@ var self_knockback_mult: float = 1
 @onready var debug_label: DebugLabel = %DebugLabel
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var hole_ray_cast: RayCast2D = $HoleRayCast2D
 
 var current_state: State = State.IDLE
 var health = max_health
@@ -24,9 +25,18 @@ enum State {
 	MOVE,
 	ATTACK,
 	DYING,
+	REELED,
+	FALLING
 }
 
-const STATES = ["Idle", "Move", "Attack", "Dying"]
+const STATES: Dictionary[State, String] = {
+	State.IDLE: "Idle",
+	State.MOVE: "Move",
+	State.ATTACK: "Attack",
+	State.DYING: "Dying",
+	State.REELED: "Reeled",
+	State.FALLING: "Falling"
+}
 
 func _process(_delta: float) -> void:
 	player = null
@@ -34,7 +44,18 @@ func _process(_delta: float) -> void:
 		if body is Player:
 			player = body
 
-	debug_label.write("State: %s" % STATES[current_state])
+	if hole_ray_cast.is_colliding():
+		current_state = State.FALLING
+		get_tree().create_timer(1).timeout.connect(self.queue_free)
+		collision_layer = 0
+		collision_mask = 0
+		velocity.y /= 2
+		z_index = -1
+		y_sort_enabled = true
+		hole_ray_cast.enabled = false
+
+
+	debug_label.write("State: %s" % (STATES[current_state] or "Unknown"))
 	debug_label.write("Health: %d/%d" % [health, max_health])
 	debug_label.write("Can See Player: %s" % (player != null))
 
@@ -55,3 +76,13 @@ func _load_resource(enemy_resource: EnemyResource) -> void:
 	knockback = enemy_resource.knockback
 	self_knockback_mult = enemy_resource.self_knockback_mult
 	vision_shape.scale = Vector2(enemy_resource.vision_distance, enemy_resource.vision_distance)
+
+func toggle_reeled_colisions(state: bool):
+	# set_collision_mask_value(3, false) # prevent falling into holes
+	set_collision_mask_value(4, state) # prevent damaging player
+	hole_ray_cast.enabled = state
+
+	if state:
+		current_state = State.REELED
+	else:
+		current_state = State.IDLE
