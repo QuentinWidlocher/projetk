@@ -18,6 +18,9 @@ func process(_delta: float):
 		else:
 			return ThrowFishingRodState.new(player)
 
+	if Input.is_action_just_released("bomb"):
+		return ThrowBombState.new(player)
+
 	if Input.is_action_just_released("object_category_1"):
 		return IdleState.new(player)
 

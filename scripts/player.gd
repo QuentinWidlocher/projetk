@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var target: Node2D = $Target
 @onready var target_shape: CollisionShape2D = $Target/Area2D/CollisionShape2D
 @onready var target_line: BezierLine2D = $BezierLine2D
+@onready var target_bomb_radius_area: Area2D = $Target/BombRadiusArea
 @onready var aim_arrow: Node2D = %AimArrow/Pivot
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var hole_ray_cast: RayCast2D = $HoleRayCast2D
@@ -51,7 +52,7 @@ func _process(delta):
 	debug_label.write("HP: %0.2f/%0.2f" % [health, max_health])
 	debug_label.write("Hooked: %s" % (str(hooked_target.name) if hooked_target else "None"))
 
-	var next_state = current_state.process(delta)
+	var next_state = await current_state.process(delta)
 	if next_state != null and next_state != current_state:
 		switch_state(next_state)
 
@@ -135,6 +136,7 @@ func animate_running():
 		play_animation("idle")
 
 func switch_state(new_state: BaseState):
+	print(current_state.get_script().get_global_name().replace("State", ""), "->", new_state.get_script().get_global_name().replace("State", ""))
 	var old_state = current_state
 	old_state.on_exit()
 	current_state = new_state

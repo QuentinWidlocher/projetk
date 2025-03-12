@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://bexxaeethfndr"]
+[gd_scene load_steps=112 format=3 uid="uid://bexxaeethfndr"]
 
 [ext_resource type="Script" uid="uid://dhbf6g4jagno6" path="res://scripts/player.gd" id="1_qhqgy"]
 [ext_resource type="Script" uid="uid://jfi663m2b1l" path="res://addons/bezier-line-2d/bezier_line2d.gd" id="2_2a3c5"]
@@ -991,6 +991,17 @@ height = 435.858
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujl30"]
 radius = 40.0
 
+[sub_resource type="Gradient" id="Gradient_gtnwl"]
+offsets = PackedFloat32Array(0, 0.7, 0.71, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2w11d"]
+gradient = SubResource("Gradient_gtnwl")
+width = 500
+height = 500
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qlg0r"]
 animations = [{
 "frames": [{
@@ -1269,6 +1280,7 @@ wall_min_slide_angle = 0.349066
 script = ExtResource("1_qhqgy")
 
 [node name="HitArea2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 0
 monitoring = false
@@ -1278,6 +1290,7 @@ position = Vector2(0, -127)
 shape = SubResource("CapsuleShape2D_h7ic4")
 
 [node name="PhysicShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_ke2ow")
 
@@ -1338,17 +1351,32 @@ rotation = 1.00007
 shape = SubResource("CapsuleShape2D_2a3c5")
 
 [node name="Target" type="Node2D" parent="."]
-visible = false
 
 [node name="Sprite" type="Sprite2D" parent="Target"]
+visible = false
 z_index = 1
 texture = ExtResource("25_ke2ow")
 
 [node name="Area2D" type="Area2D" parent="Target"]
+visible = false
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Target/Area2D"]
 shape = SubResource("CircleShape2D_ujl30")
+
+[node name="BombRadiusArea" type="Area2D" parent="Target"]
+visible = false
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 9
+
+[node name="Sprite2D" type="Sprite2D" parent="Target/BombRadiusArea"]
+modulate = Color(1, 0.24, 0.24, 0.34902)
+scale = Vector2(0.72, 0.36)
+texture = SubResource("GradientTexture2D_2w11d")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Target/BombRadiusArea"]
+polygon = PackedVector2Array(-46, -86, 43, -87, 128, -63, 172, -23, 174, 23, 130, 65, 44, 86, -44, 86, -129, 64, -173, 23, -173, -23, -127, -64)
 
 [node name="HoleRayCast2D" type="RayCast2D" parent="."]
 unique_name_in_owner = true
