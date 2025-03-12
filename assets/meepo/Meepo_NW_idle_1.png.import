@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1pilxfrtx83b"
-path.bptc="res://.godot/imported/Meepo_NW_idle_1.png-b53e259f287850a93e16ca6befeb7264.bptc.ctex"
-path.astc="res://.godot/imported/Meepo_NW_idle_1.png-b53e259f287850a93e16ca6befeb7264.astc.ctex"
+path="res://.godot/imported/Meepo_NW_idle_1.png-b53e259f287850a93e16ca6befeb7264.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/meepo/Meepo_NW_idle_1.png"
-dest_files=["res://.godot/imported/Meepo_NW_idle_1.png-b53e259f287850a93e16ca6befeb7264.bptc.ctex", "res://.godot/imported/Meepo_NW_idle_1.png-b53e259f287850a93e16ca6befeb7264.astc.ctex"]
+dest_files=["res://.godot/imported/Meepo_NW_idle_1.png-b53e259f287850a93e16ca6befeb7264.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=0

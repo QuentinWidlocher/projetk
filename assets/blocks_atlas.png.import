@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/blocks_atlas.png-3d6da29d5f2c5038163ece3573e9
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

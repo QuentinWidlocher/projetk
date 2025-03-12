@@ -8,7 +8,9 @@ func on_exit():
 	player.aim_arrow.visible = false
 
 func process(_delta: float):
-	player.aim_arrow.rotation = player.direction.angle()
+	var player_dir = player.direction
+	player_dir.y *= 2 # the angle is already isometric so we need to "unisometric" it first
+	player.aim_arrow.rotation = player_dir.angle()
 
 	player.play_animation("idle")
 

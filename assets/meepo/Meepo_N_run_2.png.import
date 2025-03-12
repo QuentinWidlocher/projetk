@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2jfkrpqlcjs4"
-path.bptc="res://.godot/imported/Meepo_N_run_2.png-c1d9fca542fc5749a1e7b1246f4af709.bptc.ctex"
-path.astc="res://.godot/imported/Meepo_N_run_2.png-c1d9fca542fc5749a1e7b1246f4af709.astc.ctex"
+path="res://.godot/imported/Meepo_N_run_2.png-c1d9fca542fc5749a1e7b1246f4af709.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/meepo/Meepo_N_run_2.png"
-dest_files=["res://.godot/imported/Meepo_N_run_2.png-c1d9fca542fc5749a1e7b1246f4af709.bptc.ctex", "res://.godot/imported/Meepo_N_run_2.png-c1d9fca542fc5749a1e7b1246f4af709.astc.ctex"]
+dest_files=["res://.godot/imported/Meepo_N_run_2.png-c1d9fca542fc5749a1e7b1246f4af709.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=0

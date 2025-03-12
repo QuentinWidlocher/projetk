@@ -86,7 +86,9 @@ func _physics_process(delta):
 func get_move_axis():
 	var x_axis = Input.get_axis("move_left", "move_right")
 	var y_axis = Input.get_axis("move_up", "move_down")
-	return Vector2(x_axis, y_axis)
+	var result: Vector2 = Vector2(x_axis, y_axis)
+	result.y *= 0.5 # Imagine a circle flattened a bit to look isometric
+	return result.normalized()
 
 func on_hit(damage: float, source_position: Vector2, knockback_force: float):
 	if invincibility_timer.is_stopped():
